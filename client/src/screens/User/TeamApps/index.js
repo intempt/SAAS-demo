@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { Empty } from 'antd';
 
 import SEO from '../../../components/Marketing/Layout/seo';
 import AuthContext from '../../../utils/authContext';
@@ -76,20 +75,17 @@ const TeamApps = () => {
       <div>
         <div>
           <h1>Team Apps:</h1>
-            {teamApps.length !== 0 ? (
-              teamApps.map((org) => (
-                <Link key={org.id} href={`/app/${org.id}/dashboard`}>
-                  <a>
-                    <StyledCard>
-                      <StyledLink>{org.org_name}</StyledLink>
-                      <RoleText>Role: user</RoleText>
-                    </StyledCard>
-                  </a>
-                </Link>
-              ))
-            ) : (
-              <Empty />
-              )}
+          {teamApps &&
+            teamApps.map((org) => (
+              <Link key={org.id} href={`/app/${org.id}/dashboard`}>
+                <a>
+                  <StyledCard>
+                    <StyledLink>{org.org_name}</StyledLink>
+                    <RoleText>Role: user</RoleText>
+                  </StyledCard>
+                </a>
+              </Link>
+            ))}
         </div>
       </div>
     </React.Fragment>

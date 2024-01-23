@@ -3,15 +3,14 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import moment from 'moment';
-import { Menu, Layout, Avatar, Popover, Badge, List, Button, Space } from 'antd';
+import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd';
 import {
   RightOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UserOutlined,
   SettingOutlined,
-  LogoutOutlined,
-  UsergroupAddOutlined
+  LogoutOutlined
 } from '@ant-design/icons';
 import { IoNotificationsOutline } from 'react-icons/io5';
 
@@ -150,7 +149,7 @@ const StyledRightOutlined = styled(RightOutlined)`
   color: ${colors.silver};
 `;
 
-const IconButton = styled(Button)`
+const IconButton = styled(Badge)`
   width: 48px;
   height: 48px;
   display: flex;
@@ -204,7 +203,7 @@ const AppHeader = ({
         <CollapseButton onClick={onCollapseChange} theme={theme}>
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </CollapseButton>
-        <RightContainer>   
+        <RightContainer>
           <StyledPopover
             placement="bottomRight"
             trigger="click"
@@ -241,69 +240,35 @@ const AppHeader = ({
               <IconFont />
             </IconButton>
           </StyledPopover>
-          <Menu key="user" mode="horizontal" theme={theme} 
-            items={[
-                {
-                  label: (
-                    <AvatarWrapper>
+          <Menu key="user" mode="horizontal" theme={theme}>
+            <SubMenu
+              title={
+                <AvatarWrapper>
                   {avatar ? (
                     <StyledAvatar src={avatar} />
                   ) : (
                     <StyledAvatar icon={<UserOutlined />} />
                   )}
                 </AvatarWrapper>
-                  ),
-                  key: "submenu",
-                  children: [
-                    {
-                      label: (
-                        <a>
-                          Logged in as {username}
-                        </a>
-                      ),
-                      disabled: true,
-                      key: "Loggedin",
-                    },
-                    {
-                      label: (
-                        <a href="/user/dashboard">
-                          User Dashboard
-                        </a>
-                      ),
-                      icon: <UserOutlined/>,
-                      key: "user",
-                    },
-                    {
-                      label: (
-                        <a href="/user/teamapps">
-                          Team App
-                        </a>
-                      ),
-                      icon: <UsergroupAddOutlined/>,
-                      key: "teamapps",
-                    }, 
-                    {
-                      label: (
-                        <a href="/user/settings/account">
-                          Settings
-                        </a>
-                      ),
-                      icon: <SettingOutlined/>,
-                      key: "setting",
-                    },
-                    {
-                      label: (
-                        <a onClick={logout}>
-                          Sign Out
-                        </a>
-                      ),
-                      icon: <LogoutOutlined/>,
-                      key: "SignOut",
-                    },
-                  ]
-                },
-              ]}
-          >
+              }
+            >
+              <Menu.Item disabled key="Loggedin">
+                Logged in as {username}
+              </Menu.Item>
+              <Menu.Item icon={<UserOutlined />} key="user">
+                <Link href="/user/dashboard">
+                  <a>User Dashboard</a>
+                </Link>
+              </Menu.Item>
+              <Menu.Item icon={<SettingOutlined />} key="settings">
+                <Link href="/user/settings/account">
+                  <a>Settings</a>
+                </Link>
+              </Menu.Item>
+              <Menu.Item icon={<LogoutOutlined />} onClick={logout} key="SignOut">
+                Sign out
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </RightContainer>
       </LayoutHeader>

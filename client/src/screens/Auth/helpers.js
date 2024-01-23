@@ -23,8 +23,6 @@ export const LoginAuth = async (
   //server authentication, returns jwt token
   let email = authRes.user.email;
   let data = { email, token };
-  
-  // Command out for temporary localhost development. (Unable to axios post to correct port:80)
   let authServerRes = await axios.post(`/auth/login`, data).catch((err) => {
     fetchFailure(err);
   });
@@ -56,7 +54,7 @@ export const LoginAuth = async (
   if (isInviteFlow) {
     router.push(`/user/confirmedinvite/${invite_key}`);
   } else {
-    router.push(`/user/dashboard`);
+    router.push('/user/dashboard');
   }
 };
 
@@ -122,7 +120,7 @@ export const ValidSchema = Yup.object().shape({
 });
 
 const isValidToken = (token, fetchFailure) => {
-  //decode jwt token received from server
+  //decode jwt token recieved from server
   let validToken;
   try {
     validToken = jwt_decode(token);

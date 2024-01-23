@@ -202,11 +202,6 @@ const MobileHeader = ({ mobileMenuHandler }) => {
       </LogoWrapper>
       <LinksWrapper>
         <LinkItem>
-          <Link href="/user/dashboard" passHref>
-            <StyledLink isActive={location.asPath === '/user/dashboard'}>Dashboard</StyledLink>
-          </Link>
-        </LinkItem>
-        <LinkItem>
           <Link href="/user/teamapps" passHref>
             <StyledLink isActive={location.asPath === '/user/teamapps'}>Team Apps</StyledLink>
           </Link>

@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import styled from 'styled-components';
 import { Spin } from 'antd';
 
+
 import AuthContext from '../../../../utils/authContext';
 import OrgContext from '../../../../utils/orgContext';
 import ApiContext from '../../../../utils/apiContext';
@@ -11,7 +12,8 @@ import axios from '../../../../services/axios';
 
 import Card from '../../../../components/Common/Card';
 import Button from '../../../../components/Common/buttons/PrimaryButton';
-
+import AddCard from '../../../../../public/addcardsc'
+import Head from 'next/head'
 const ButtonWrapper = styled.div`
   padding-top: 2rem;
   padding-bottom: 1rem;
@@ -92,6 +94,12 @@ const AttachPaymentForm = () => {
   };
 
   return (
+    <>
+    <Head>
+      <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+      <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+    </Head>
+    <AddCard></AddCard>
     <Card>
       <Spin tip="Loading..." spinning={isLoading}>
         <Header>Add a Payment Method</Header>
@@ -111,6 +119,7 @@ const AttachPaymentForm = () => {
         )}
       </Spin>
     </Card>
+    </>
   );
 };
 

@@ -50,7 +50,6 @@ const SubscriptionExists = () => {
           If you would like to upgrade an existing plan, please visit your subscription settings
           page by clicking the link below.
         </Text>
-        {/* TODO: Change to attached a org.id */}
         <ConfirmButton onClick={() => router.push('/user/settings/subscription')}>
           Click Here
         </ConfirmButton>

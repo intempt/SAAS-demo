@@ -4,12 +4,13 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/router';
 import { FaRegCreditCard } from 'react-icons/fa';
 import { Spin } from 'antd';
-
+import Head from 'next/head'
 import OrgContext from '../../../utils/orgContext';
 import ApiContext from '../../../utils/apiContext';
 import AuthContext from '../../../utils/authContext';
 import axios from '../../../services/axios';
 import { colors, breakpoints } from '../../../styles/theme';
+import PaymentIntempt from '../../../../public/paymentsc'
 
 import Button from '../../../components/Common/buttons/PrimaryButton';
 import Card from '../../../components/Common/Card';
@@ -152,7 +153,6 @@ const CheckoutForm = () => {
     setSubId(location.query?.subscription_id);
     setSubItem(location.query?.subscription_item);
 
-    // TODO: Need to remove the console.log
     console.log(location);
   }, [location.isReady]);
 
@@ -282,7 +282,14 @@ const CheckoutForm = () => {
   };
 
   return (
+   
+    
     <Wrapper>
+    <Head>
+    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+    </Head>
+    <PaymentIntempt></PaymentIntempt>
       <PaymentInfo>
         <Spin tip="Loading" spinning={isLoading}>
           <h2>Purchasing Subscription for {org_name}</h2>
@@ -353,6 +360,7 @@ const CheckoutForm = () => {
         </PaymentConfirm>
       </Spin>
     </Wrapper>
+
   );
 };
 

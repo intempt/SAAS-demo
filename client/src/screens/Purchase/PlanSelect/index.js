@@ -4,6 +4,9 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { colors, breakpoints } from '../../../styles/theme';
 import OrgContext from '../../../utils/orgContext';
+import Head from 'next/head'
+import BasicPlanIntempt from '../../../../public/basicplansc';
+
 
 const CardsWrapper = styled.div`
   display: flex;
@@ -86,8 +89,8 @@ const PlanSelect = () => {
   const premium_plan = process.env.NEXT_PUBLIC_STRIPE_PREMIUM_PLAN;
   const basic_plan = process.env.NEXT_PUBLIC_STRIPE_BASIC_PLAN;
 
-  const premium_price = process.env.NEXT_PUBLIC_STRIPE_PREMIUM_PLAN_PRICE;
-  const basic_price = process.env.NEXT_PUBLIC_STRIPE_BASIC_PLAN_PRICE;
+  const premium_price = 299;
+  const basic_price = 99;
 
   const premium_type = process.env.NEXT_PUBLIC_STRIPE_PREMIUM_PLAN_TYPE;
   const basic_type = process.env.NEXT_PUBLIC_STRIPE_BASIC_PLAN_TYPE;
@@ -139,6 +142,14 @@ const PlanSelect = () => {
   };
 
   return (
+    <>
+    <Head>
+    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+    </Head>
+   <BasicPlanIntempt></BasicPlanIntempt>
+
+
     <div>
       <PurchaseHeader>Purchasing SAAS Pro </PurchaseHeader>
       <PurchaseText>for {org_name}</PurchaseText>
@@ -182,6 +193,8 @@ const PlanSelect = () => {
         </PlanButton>
       </ButtonWrapper>
     </div>
+    
+    </>
   );
 };
 

@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import PrimaryButton from '../../../components/Common/buttons/PrimaryButton';
 import DoneButton from '../../../components/Common/buttons/CancelButton';
 import Loadable from 'react-loadable';
+import Head from 'next/head'
+import OnBoardingIntempt from '../../../../public/onboardingdemosc'
 
 //solves reactour ssr issue
 const Tour = Loadable({
@@ -44,6 +46,12 @@ const Onboarding = () => {
   const [isTourOpen, setTourOpen] = useState(false);
 
   return (
+    <>
+    <Head>
+    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+    </Head>
+    <OnBoardingIntempt></OnBoardingIntempt>
     <div>
       <h1>Onboarding</h1>
       <h2>Click Below To Start Tour</h2>
@@ -62,6 +70,7 @@ const Onboarding = () => {
       <StyledStep className="step-3">Step 3</StyledStep>
       <StyledStepAlt className="step-4">Step 4</StyledStepAlt>
     </div>
+    </>
   );
 };
 

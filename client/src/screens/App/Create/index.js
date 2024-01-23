@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Spin, message } from 'antd';
-
+import Head from 'next/head'
 import AuthContext from '../../../utils/authContext';
 import getOrgId from '../../../utils/orgId';
 import ApiContext from '../../../utils/apiContext';
 import { colors } from '../../../styles/theme';
 import axios from '../../../services/axios';
 import { sendEventToAnalytics } from '../../../services/analytics';
-
+import  CreateObjectIntempt from '../../../../public/createobjectsc'
 import Button from '../../../components/Common/buttons/SecondaryButton';
 import Card from '../../../components/Common/Card';
 import FieldLabel from '../../../components/Common/forms/FieldLabel';
@@ -74,6 +74,14 @@ const CreateTask = () => {
   };
 
   return (
+
+    <>
+    <Head>
+    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+    </Head>
+    <CreateObjectIntempt></CreateObjectIntempt>
+
     <div>
       <Title>Create Todo</Title>
       <form onSubmit={postTodo}>
@@ -105,6 +113,7 @@ const CreateTask = () => {
         </Card>
       </form>
     </div>
+    </>
   );
 };
 

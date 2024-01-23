@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { Formik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import Script from 'next/script';
+import Head from 'next/head'
+import LoginIntempt from '../../../../public/loginscript'
 import AuthContext from '../../../utils/authContext';
 import ApiContext from '../../../utils/apiContext';
 import { LoginAuth } from '../helpers';
@@ -110,6 +112,11 @@ const Login = () => {
 
   return (
     <React.Fragment>
+   <Head>
+    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+   </Head>
+   <LoginIntempt></LoginIntempt>
       <SEO seoData={seoData} />
       <div>
         {isLoading && <LoadingOverlay />}

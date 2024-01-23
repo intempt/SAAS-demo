@@ -7,6 +7,9 @@ import Todo from './todo';
 import { Empty, Spin } from 'antd';
 import axios from '../../../services/axios';
 import Card from '../../../components/Common/Card';
+import Head from 'next/head'
+import UpdateObjectIntempt from '../../../../public/updateobjectssc'
+
 
 const StyledMain = styled.div`
   display: flex;
@@ -103,13 +106,20 @@ const ReadUpdate = () => {
   };
 
   return (
+    <>
+    <Head>
+    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+    </Head>
+    
+
     <StyledMain>
       <Title>Todos: </Title>
       <Card>
         <Spin tip="Loading..." spinning={isLoading}>
           {todos.length !== 0 ? (
-            todos.map((todo) => (
-              <Todo
+            todos.map((todo,index) => (
+              <Todo key = {index}
                 todo={todo}
                 isEditting={isEditting}
                 editTodoID={editTodoID}
@@ -129,6 +139,7 @@ const ReadUpdate = () => {
         </Spin>
       </Card>
     </StyledMain>
+    </>
   );
 };
 

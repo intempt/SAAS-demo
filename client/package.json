@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && next build && next export",
     "start": "next start",
     "test": "jest --forceExit",
     "cypress": "cypress open"
+    
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.4",

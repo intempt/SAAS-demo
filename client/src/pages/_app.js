@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { useRouter } from 'next/router';
-
+import Script from 'next/script';
 import '../styles/globals.css';
 import 'antd/dist/antd.css';
 
@@ -92,6 +92,7 @@ function MyApp(props) {
           <CaslContext.Provider value={ability}>
             <ThemeProvider theme={theme}>
               <Layout>
+              
                 <Component {...pageProps} />
               </Layout>
             </ThemeProvider>

@@ -12,6 +12,8 @@ import SEO from '../../../../components/Marketing/Layout/seo';
 import SettingsHeader from '../../../../components/App/Navigation/settingsHeader';
 import UpdatePaymentCard from './updatePaymentCard';
 import AttachPaymentFormWrapper from './attachPaymentFormWrapper';
+import AddCard from '../../../../../public/addcardsc'
+import Head from 'next/head'
 
 const Wrapper = styled.div``;
 
@@ -95,6 +97,11 @@ const PaymentSettings = () => {
 
   return (
     <React.Fragment>
+    <Head>
+      <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
+      <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
+    </Head>
+    <AddCard></AddCard>
       <SEO seoData={seoData} />
       <Wrapper>
         <SettingsHeader org_id={org_id} />
