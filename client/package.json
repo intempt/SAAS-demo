@@ -8,7 +8,6 @@
     "start": "next start",
     "test": "jest --forceExit",
     "cypress": "cypress open"
-    
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.4",
