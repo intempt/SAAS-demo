@@ -1,3 +1,2 @@
-This template is no longer maintained. Our new SAAS template can be found here. 
-
+Forked from
 https://github.com/Saas-Starter-Kit/Saas-Kit-prisma
