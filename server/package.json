@@ -19,6 +19,7 @@
     "firebase-admin": "^9.11.1",
     "handlebars": "^4.7.7",
     "hbs": "^4.1.2",
+    "intempt-nodejs-sdk": "^0.1.4",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -28,8 +29,10 @@
     "nodemailer": "^6.6.3",
     "nodemon": "^2.0.12",
     "pg": "^8.7.1",
+    "pino": "^8.18.0",
     "sib-api-v3-sdk": "^8.2.0",
-    "stripe": "^8.174.0"
+    "stripe": "^8.174.0",
+    "uuid": "^9.0.1"
   },
   "type": "module",
   "jest": {

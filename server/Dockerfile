@@ -1,11 +1,15 @@
-FROM node:14-alpine
+FROM node:18.19.0-alpine3.19
 
-WORKDIR '/app'
+#ENV NODE_ENV production
+
+WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn install
  
 COPY . .
 
-CMD [ "npm", "start" ]
+#EXPOSE 9000
+
+CMD [ "yarn", "start" ]

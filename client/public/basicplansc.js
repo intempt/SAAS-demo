@@ -3,9 +3,6 @@ import Script from 'next/script';
 
 
 function BasicPlanIntempt() {
-
- 
-
   return (
     <>
     <Head>

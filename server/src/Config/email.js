@@ -58,11 +58,15 @@ let company_name = process.env.COMPANY_NAME;
 let company_address = process.env.COMPANY_ADDRESS;
 
 export const sendEmail = async (toEmail, template, locals) => {
-  await email.send({
-    template,
-    message: {
-      to: toEmail
-    },
-    locals: { ...locals, product_name, product_url, company_address, company_name }
-  });
+  return new Promise((resolve) => {
+    console.log('sendEmail', toEmail, template, locals)
+    resolve()
+  })
+  // await email.send({
+  //   template,
+  //   message: {
+  //     to: toEmail
+  //   },
+  //   locals: { ...locals, product_name, product_url, company_address, company_name }
+  // });
 };

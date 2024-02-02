@@ -4,4 +4,9 @@ keys.js
 .env.local
 dev.env
 
-firebase-admin.json
+firebase-ser    admin.json
+
+.idea
+
+# Ignore Mac DS_Store files
+.DS_Store
