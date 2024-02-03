@@ -5,7 +5,9 @@ import {
   FETCH_SUCCESS,
   FETCH_INIT,
   SET_ORG,
-  REMOVE_ORG
+  REMOVE_ORG,
+  SET_MODAL,
+  REMOVE_MODAL
 } from './actionTypes';
 
 export const Login = (user) => {
@@ -41,4 +43,14 @@ export const Set_Org = (payload) => {
 };
 export const Remove_Org = {
   type: REMOVE_ORG
+};
+
+export const Set_Modal = (payload) => {
+  return {
+    type: SET_MODAL,
+    payload
+  };
+};
+export const Remove_Modal = {
+  type: REMOVE_MODAL
 };

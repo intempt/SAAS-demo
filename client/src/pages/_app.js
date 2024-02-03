@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
 import '../styles/globals.css';
 import 'antd/dist/antd.css';
 
@@ -11,6 +10,10 @@ import { Login, Logout } from '../store/actions/actions';
 import OrgContext from '../utils/orgContext';
 import { orgReducer, initialStateOrg } from '../store/reducers/orgReducer';
 import { Remove_Org, Set_Org } from '../store/actions/actions';
+
+import ModalContext from '../utils/modalContext';
+import { modalReducer, initialStateModal } from '../store/reducers/modalReducer';
+import { Set_Modal, Remove_Modal } from '../store/actions/actions';
 
 import ApiContext from '../utils/apiContext';
 import { apiReducer, initialStateApi } from '../store/reducers/apiReducer';
@@ -25,6 +28,7 @@ import { theme } from '../styles/theme';
 import { pageView } from '../services/analytics';
 
 import { silentAuth } from '../utils/helpers';
+import ModalComponent from "@components/Modal/ModalComponent";
 
 const NoLayout = ({ children }) => children;
 
@@ -32,6 +36,7 @@ function MyApp(props) {
   const [authState, dispatchAuth] = useReducer(authReducer, initialStateAuth);
   const [apiState, dispatchApi] = useReducer(apiReducer, initialStateApi);
   const [orgState, dispatchOrg] = useReducer(orgReducer, initialStateOrg);
+  const [modalState, dispatchModal] = useReducer(modalReducer, initialStateModal);
 
   const router = useRouter();
 
@@ -85,18 +90,30 @@ function MyApp(props) {
     dispatchOrg(Set_Org(payload));
   };
 
+  const SetModal = (payload) => {
+    dispatchModal(Set_Modal(payload));
+  };
+
+  const RemoveModal = () => {
+    dispatchModal(Remove_Modal);
+  };
+
   return (
     <AuthContext.Provider value={{ authState, LogIn, LogOut, firebase }}>
       <ApiContext.Provider value={{ apiState, fetchFailure, fetchInit, fetchSuccess }}>
-        <OrgContext.Provider value={{ SetOrg, orgState }}>
-          <CaslContext.Provider value={ability}>
-            <ThemeProvider theme={theme}>
-              <Layout>
-              
-                <Component {...pageProps} />
-              </Layout>
-            </ThemeProvider>
-          </CaslContext.Provider>
+        <OrgContext.Provider value={{SetOrg, orgState}}>
+          <ModalContext.Provider value={{SetModal, modalState, RemoveModal}}>
+            <CaslContext.Provider value={ability}>
+              <ThemeProvider theme={theme}>
+                <Layout>
+
+                  <Component {...pageProps} />
+
+                  <ModalComponent />
+                </Layout>
+              </ThemeProvider>
+            </CaslContext.Provider>
+          </ModalContext.Provider>
         </OrgContext.Provider>
       </ApiContext.Provider>
     </AuthContext.Provider>

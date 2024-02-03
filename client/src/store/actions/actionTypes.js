@@ -11,3 +11,7 @@ export const FETCH_FAILURE = 'Fetch_failure';
 export const SET_ORG = 'Set_Org';
 
 export const REMOVE_ORG = 'Remove_Org';
+
+export const SET_MODAL = 'Set_Modal'
+
+export const REMOVE_MODAL = 'Remove_Modal'
