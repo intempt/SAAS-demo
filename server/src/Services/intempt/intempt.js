@@ -28,7 +28,10 @@ class IntemptService {
     async profile(email) {
         try {
             logger.info(`Intempt: profile ${email}`);
-            return await eventRecorder.profile(email, email);
+            return await eventRecorder.addEvent('profile', {
+                visitorId: email,
+                identifier: email
+            });
         } catch (error) {
             logger.warn('Intempt: failed to profile', email);
         }
