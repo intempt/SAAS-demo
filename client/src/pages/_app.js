@@ -106,9 +106,7 @@ function MyApp(props) {
             <CaslContext.Provider value={ability}>
               <ThemeProvider theme={theme}>
                 <Layout>
-
                   <Component {...pageProps} />
-
                   <ModalComponent />
                 </Layout>
               </ThemeProvider>

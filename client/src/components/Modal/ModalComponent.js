@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ModalHeader from "@components/Modal/ModalHeader";
 import ModalBody from "@components/Modal/ModalBody";
 import ModalFooter from "@components/Modal/ModalFooter";
+import useIntemptCampaigns from "../../hooks/useIntemptCampaigns";
 
 const ModalBackdrop = styled.div`
     position: fixed;
@@ -36,6 +37,9 @@ const ModalContent = styled.div`
 `;
 
 const ModalComponent = () => {
+  // Intempt popups
+  useIntemptCampaigns();
+
   const {modalState, RemoveModal} = useContext(ModalContext);
   const {
     open,
