@@ -25,6 +25,7 @@ import roleApi from './API/roles.js';
 import usersApi from './API/users.js';
 import orgApi from './API/org.js';
 import testApi from './API/test.js';
+import intempt from './API/intempt.js';
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use('/api', todoApi);
 app.use('/api', roleApi);
 app.use('/api', usersApi);
 app.use('/test', testApi);
+app.use('/api', intempt);
 
 // error handling
 app.use(errorHandler);

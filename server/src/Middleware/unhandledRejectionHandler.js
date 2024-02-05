@@ -1,9 +1,7 @@
-import {ResponseError} from "intempt-nodejs-sdk";
+import { ResponseError } from "intempt-nodejs-sdk";
 
 export const unhandledRejectionHandler = (err) => {
-  console.log(err.response.urlList);
   if (err instanceof ResponseError) {
-    // Assuming `response` is your response object
     const symbols = Object.getOwnPropertySymbols(err.response);
     const stateSymbol = symbols.find((symbol) => symbol.toString() === 'Symbol(state)');
     const state = stateSymbol ? err.response[stateSymbol] : null;
@@ -18,7 +16,6 @@ export const unhandledRejectionHandler = (err) => {
       const { response } = err;
       console.log(`Response Status: ${response.status} ${response.statusText}`);
     } else {
-      // If there's no 'response' property on the error, log that information is not available
       console.log('Error does not contain a response object.');
     }
   } else {
