@@ -8,7 +8,7 @@ export const GetExperience = async (req, res) => {
     let campaignId = req.query.campaignId;
 
     const campaigns = [
-        process.env.INTEMPT_UPGRADE_TO_PREMIUM_CAMPAIGN_ID
+        process.env.INTEMPT_POPUPS_CAMPAIGN_ID
     ];
 
     if (!isEmailValid(email)) {

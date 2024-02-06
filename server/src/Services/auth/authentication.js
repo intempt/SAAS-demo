@@ -13,7 +13,6 @@ import {
   updateUsernameModel,
   updateEmailModel
 } from '../../Model/mongo/auth/authentication.js';
-import intempt from "../../services/intempt/intempt.js";
 
 export const CreateUser = async (req, res) => {
   let verify_key = req.body.verify_key;
@@ -71,7 +70,6 @@ export const SignUp = async (req, res) => {
 
   //save user firebase info to our own db, and get unique user database id
   await saveUsertoDB(email, username, firebaseId, randomBytes);
-  await intempt.profile(email);
 
   res.send('Email Confirm Sent');
 };

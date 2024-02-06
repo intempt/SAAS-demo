@@ -6,7 +6,7 @@ import axios from "axios";
 import {getIntemptModalConfig} from "../utils/modal";
 
 const campaigns = [
-  process.env.NEXT_PUBLIC_INTEMPT_UPGRADE_TO_PREMIUM_CAMPAIGN_ID
+  process.env.NEXT_PUBLIC_INTEMPT_POPUPS_CAMPAIGN_ID,
 ];
 
 const campaignConfigSkeleton = {
@@ -56,7 +56,11 @@ const useIntemptCampaigns = () => {
                 headers: config.headers
               })
 
-              if (response.status === 200 && response.data.experience) {
+              if (
+                  response.status === 200 &&
+                  response.data.experience &&
+                  typeof response.data.experience.campaignStateMismatch === 'undefined'
+              ) {
                 SetModal({
                   open: true,
                   closeOnBackdrop: false,

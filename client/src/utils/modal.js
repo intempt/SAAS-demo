@@ -9,8 +9,10 @@ export const getButton = ({text, url, variant, action}) => {
 
     return config;
 }
-export const getText = ({text, variant}) => ({type: 'text', variant, text})
-export const getSvg = ({svg}) => ({type: 'svg', width: 160, height: 160, html: svg})
+export const getText = ({text, variant}) =>
+    ({type: 'text', variant, text})
+export const getImage = ({image, alt, width, height}) =>
+    ({type: 'image', width: width ?? 160, height: height ?? 160, src: image, alt: alt ?? ''})
 
 export const getIntemptModalConfig = (data, closeModal) => {
     let config = {
@@ -21,8 +23,13 @@ export const getIntemptModalConfig = (data, closeModal) => {
 
     config.title = data.title ?? '';
 
-    if (typeof data.svg !== 'undefined') {
-        config.body.push(getSvg({svg: data.svg}));
+    if (typeof data.imageSrc !== 'undefined') {
+        config.body.push(getImage({
+            image: data.imageSrc,
+            alt: data?.imageAlt,
+            height: data?.imageHeight,
+            width: data?.imageWidth
+        }));
     }
 
     if (typeof data.body1 !== 'undefined') {
@@ -40,10 +47,10 @@ export const getIntemptModalConfig = (data, closeModal) => {
     }
 
     let buttons = [];
-    if (typeof data.button1 !== 'undefined') {
+    if (typeof data.okButtonText !== 'undefined') {
         buttons.push(getButton({
-            text: data.button1,
-            url: '#',
+            text: data.okButtonText,
+            action: closeModal,
             type: 'premium'
         }));
     }
