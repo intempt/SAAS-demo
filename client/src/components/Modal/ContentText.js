@@ -41,11 +41,25 @@ export const TEXT_VARIANTS = {
 }
 
 const ContentText = ({ text, variant = TEXT_VARIANTS.NORMAL }) => {
+  // TODO: dangerouslySetInnerHTML={{ __html: text }} - This should be sanitized, just for demo purposes
+  /**
+   * Example
+   * import DOMPurify from 'dompurify';
+   *
+   * const SafeContent = ({ content }) => {
+   *   const sanitizedContent = DOMPurify.sanitize(content);
+   *   return <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />;
+   * };
+   *
+   * // Usage in your component
+   * <SafeContent content={formattedText} />
+   */
+
   return (
     <>
-      {variant === TEXT_VARIANTS.BIG && (<StyledTextVariantBig>{text}</StyledTextVariantBig>)}
-      {variant === TEXT_VARIANTS.NORMAL || !variant && (<StyledTextVariantNormal>{text}</StyledTextVariantNormal>)}
-      {variant === TEXT_VARIANTS.SMALL && (<StyledTextVariantSmall>{text}</StyledTextVariantSmall>)}
+      {variant === TEXT_VARIANTS.BIG && (<StyledTextVariantBig dangerouslySetInnerHTML={{ __html: text }}/>)}
+      {variant === TEXT_VARIANTS.NORMAL || !variant && (<StyledTextVariantNormal dangerouslySetInnerHTML={{ __html: text }}/>)}
+      {variant === TEXT_VARIANTS.SMALL && (<StyledTextVariantSmall dangerouslySetInnerHTML={{ __html: text }}/>)}
     </>
   );
 };

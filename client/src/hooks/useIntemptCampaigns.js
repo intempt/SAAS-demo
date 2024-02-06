@@ -42,9 +42,7 @@ const useIntemptCampaigns = () => {
               },
             }
           })
-        })
-
-        console.log("Campaigns config", configs);
+        });
 
         const fetchData = async () => {
           for (let config of configs) {

@@ -108,7 +108,6 @@ function MyApp(props) {
               <ThemeProvider theme={theme}>
                 <Layout>
                   <Component {...pageProps} />
-
                 </Layout>
               </ThemeProvider>
             </CaslContext.Provider>

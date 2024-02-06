@@ -20,8 +20,14 @@ export const getIntemptModalConfig = (data, closeModal) => {
         body: [],
         footer: []
     };
-
     config.title = data.title ?? '';
+
+    if (typeof data.preImageBody1 !== 'undefined') {
+        config.body.push(getText({
+            text: data.preImageBody1.replace(/\n/g, '<br/>'),
+            variant: 'big'
+        }));
+    }
 
     if (typeof data.imageSrc !== 'undefined') {
         config.body.push(getImage({
@@ -34,14 +40,14 @@ export const getIntemptModalConfig = (data, closeModal) => {
 
     if (typeof data.body1 !== 'undefined') {
         config.body.push(getText({
-            text: data.body1,
+            text: data.body1.replace(/\n/g, '<br/>'),
             variant: 'big'
         }));
     }
 
     if (typeof data.body2 !== 'undefined') {
         config.body.push(getText({
-            text: data.body2,
+            text: data.body2.replace(/\n/g, '<br/>'),
             variant: 'small'
         }));
     }
@@ -64,8 +70,6 @@ export const getIntemptModalConfig = (data, closeModal) => {
     }
 
     config.footer.push({type: 'buttons', buttons})
-
-    console.log(config)
 
     return config;
 }
