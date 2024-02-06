@@ -104,10 +104,11 @@ function MyApp(props) {
         <OrgContext.Provider value={{SetOrg, orgState}}>
           <ModalContext.Provider value={{SetModal, modalState, RemoveModal}}>
             <CaslContext.Provider value={ability}>
+              <ModalComponent />
               <ThemeProvider theme={theme}>
                 <Layout>
                   <Component {...pageProps} />
-                  <ModalComponent />
+
                 </Layout>
               </ThemeProvider>
             </CaslContext.Provider>
