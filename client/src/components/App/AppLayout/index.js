@@ -53,7 +53,7 @@ const ContentWrapper = styled.div`
   margin-left: 3.5rem;
   margin-right: 3.5rem;
   .ant-popover-inner-content {
-    padding: 0px;
+    padding: 0;
     background-color: ${({ theme }) => (theme === THEMES.DARK ? colors.midnight : colors.white)};
   }
 `;

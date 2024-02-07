@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from "styled-components";
 
 const ButtonLinkWrapper = styled.a`
@@ -64,7 +65,11 @@ const ContentButton = ({variant = BUTTON_VARIANTS.PRIMARY, url, action, text}) =
   return (
     <div>
       {url
-        ? <ButtonLinkWrapper>{drawButton()}</ButtonLinkWrapper>
+        ?  (
+              <Link href={url} passHref>
+                <ButtonLinkWrapper>{drawButton()}</ButtonLinkWrapper>
+              </Link>
+          )
         : drawButton()
       }
     </div>

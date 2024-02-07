@@ -3,7 +3,8 @@ import ModalContext from '../utils/modalContext';
 import AuthContext from "../utils/authContext";
 import { useRouter } from "next/router";
 import axios from "axios";
-import {getIntemptModalConfig} from "../utils/modal";
+import {getIntemptModalConfig} from "../utils/intemptModal";
+import getOrgId from "../utils/orgId";
 
 const campaigns = [
   process.env.NEXT_PUBLIC_INTEMPT_POPUPS_CAMPAIGN_ID,
@@ -21,12 +22,15 @@ const campaignConfigSkeleton = {
 
 const useIntemptCampaigns = () => {
   const router = useRouter();
+  const orgId = getOrgId();
   const { authState } = useContext(AuthContext);
   const { SetModal, RemoveModal } = useContext(ModalContext);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      if (authState && authState.user.jwt_token && authState.user.email) {
+      RemoveModal();
+
+      if (router.isReady && authState && authState.user.jwt_token && authState.user.email) {
         let configs = [];
         campaigns.forEach((campaignId) => {
           configs.push({
@@ -62,7 +66,9 @@ const useIntemptCampaigns = () => {
                 SetModal({
                   open: true,
                   closeOnBackdrop: false,
-                  ...getIntemptModalConfig(response.data.experience, RemoveModal)
+                  ...getIntemptModalConfig(response.data.experience, RemoveModal, {
+                    "[org_id]": orgId
+                  })
                 })
 
                 return;
@@ -82,7 +88,7 @@ const useIntemptCampaigns = () => {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
-  }, [authState, router.events]);
+  }, [authState, router.events, router.isReady]);
 };
 
 export default useIntemptCampaigns;
