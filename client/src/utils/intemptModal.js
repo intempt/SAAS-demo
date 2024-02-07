@@ -1,25 +1,14 @@
-export const getButton = ({text, url, variant = 'primary', action}) => {
-    let config = {type: 'button', variant, text};
-
-    if (typeof action === 'function') {
-        config.action = () => action();
-    } else {
-        config.url = url;
-    }
-
-    return config;
-}
 export const getText = ({text, variant}) =>
     ({type: 'text', variant, text})
 export const getImage = ({image, alt, width, height}) =>
     ({type: 'image', width: width ?? 160, height: height ?? 160, src: image, alt: alt ?? ''})
 
-export const getIntemptModalConfig = (modalData, closeModal, params) => {
+export const getIntemptModalConfig = (modalData, setModal, closeModal, params = {}) => {
     const {
         body1, body2, title, preImageBody1,
         imageAlt, imageSrc, imageWidth, imageHeight,
-        okButtonText, okButtonType, okButtonVariant,
-        cancelButtonText, cancelButtonType, cancelButtonAction, cancelButtonVariant
+        okButtonText, okButtonType, okButtonVariant, okButtonRoute, okButtonAction,
+        cancelButtonText, cancelButtonType, cancelButtonVariant, cancelButtonRoute, cancelButtonAction,
     } = modalData;
 
     let config = {
@@ -61,60 +50,107 @@ export const getIntemptModalConfig = (modalData, closeModal, params) => {
 
     let buttons = [];
     if (typeof okButtonText !== 'undefined') {
-        switch (okButtonType) {
-            case 'route': {
-                buttons.push(getButton({
-                    text: okButtonText,
-                    url: getRoute(modalData, params),
-                    variant: okButtonVariant
-                }));
-                break;
-            }
-            case 'action': {
-                buttons.push(getButton({
-                    text: okButtonText,
-                    action: closeModal,
-                    variant: okButtonVariant
-                }));
-                break
-            }
-            default: {
-                buttons.push(getButton({
-                    text: okButtonText,
-                    variant: okButtonVariant,
-                    url: '#',
-                }));
-            }
-        }
+        buttons.push(getButton({
+            modalData, params, closeModal, setModal,
+            text: okButtonText,
+            type: okButtonType,
+            variant: okButtonVariant,
+            route: okButtonRoute,
+            action: okButtonAction
+        }));
     }
 
     if (typeof cancelButtonText !== 'undefined') {
         buttons.push(getButton({
+            modalData, params, closeModal, setModal,
             text: cancelButtonText,
-            action: closeModal,
-            variant: cancelButtonVariant
+            type: cancelButtonType,
+            variant: cancelButtonVariant,
+            route: cancelButtonRoute,
+            action: cancelButtonAction
         }));
     }
 
     config.footer.push({type: 'buttons', buttons})
 
+    console.log(config)
+
     return config;
 }
 
-const getRoute = (modalData, parameters) => {
-    const {okButtonType, okButtonRoute} = modalData;
+const getButton = ({
+    modalData, params, text, type, variant =  'primary',
+    route, action, closeModal, setModal
+}) => {
+    const defaultProps = {text, variant, type: 'button'};
 
-    console.log(parameters)
+    if (typeof text !== 'undefined' && typeof type !== 'undefined') {
+        switch (type) {
+            case 'route': {
+                return {
+                    url: getRoute(route, params),
+                    ...defaultProps
+                }
+            }
+            case 'action': {
+                return {
+                    action: getAction({
+                        modalData, setModal, closeModal, action
+                    }),
+                    ...defaultProps
+                }
+            }
+            default: {
+                return {
+                    url: '#',
+                    ...defaultProps
+                };
+            }
+        }
+    }
+}
 
-    if (
-        okButtonType === 'route' &&
-        okButtonRoute !== undefined
-    ) {
+const getAction = ({modalData, setModal, closeModal, action}) => {
+    if (typeof action !== 'undefined') {
+        switch (action) {
+            case 'closeDialog': {
+                return () => closeModal()
+            }
+            case 'openSuccessDialog': {
+                return () => setModal({
+                    open: true,
+                    closeOnBackdrop: false,
+                    ...getIntemptModalConfig({
+                        "title": modalData.successDialogTitle ?? '',
+                        "body1": modalData.successDialogBody1 ?? '',
+                        "body2": modalData.successDialogBody2 ?? '',
+                        "imageAlt": modalData.successDialogImageAlt ?? '',
+                        "imageSrc": modalData.successDialogImageSrc ?? '',
+                        "imageWidth": modalData.successDialogImageWidth ?? '',
+                        "imageHeight": modalData.successDialogImageHeight ?? '',
+                        "okButtonText": modalData.successDialogOkButtonText ?? '',
+                        "okButtonType": modalData.successDialogOkButtonType ?? '',
+                        "okButtonAction": modalData.successDialogOkButtonAction ?? '',
+                        "okButtonVariant": modalData.successDialogOkButtonVariant ?? '',
+                    }, setModal, closeModal)
+                })
+            }
+            default: {
+                return () => closeModal()
+            }
+        }
+    }
+
+    return () => closeModal()
+}
+
+const getRoute = (route, parameters) => {
+    if (route !== undefined) {
         const pattern = new RegExp(Object.keys(parameters).map(key =>
             key.replace(/[\[\].*+?^${}()|\\]/g, '\\$&')
         ).join('|'), 'g');
 
-        return okButtonRoute.replace(pattern, match => parameters[match]);
+        return route.replace(pattern, match => parameters[match]);
     }
 
     return '#'

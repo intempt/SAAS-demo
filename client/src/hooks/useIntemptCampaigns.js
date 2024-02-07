@@ -66,7 +66,7 @@ const useIntemptCampaigns = () => {
                 SetModal({
                   open: true,
                   closeOnBackdrop: false,
-                  ...getIntemptModalConfig(response.data.experience, RemoveModal, {
+                  ...getIntemptModalConfig(response.data.experience, SetModal, RemoveModal, {
                     "[org_id]": orgId
                   })
                 })
