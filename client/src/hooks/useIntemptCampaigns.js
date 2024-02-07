@@ -7,7 +7,9 @@ import {getIntemptModalConfig} from "../utils/intemptModal";
 import getOrgId from "../utils/orgId";
 
 const campaigns = [
-  process.env.NEXT_PUBLIC_INTEMPT_POPUPS_CAMPAIGN_ID,
+  process.env.NEXT_PUBLIC_INTEMPT_POPUPS_CAMPAIGN1_ID,
+  process.env.NEXT_PUBLIC_INTEMPT_POPUPS_CAMPAIGN2_ID,
+  process.env.NEXT_PUBLIC_INTEMPT_POPUPS_CAMPAIGN3_ID,
 ];
 
 const campaignConfigSkeleton = {

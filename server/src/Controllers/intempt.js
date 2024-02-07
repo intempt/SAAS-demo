@@ -8,7 +8,9 @@ export const GetExperience = async (req, res) => {
     let campaignId = req.query.campaignId;
 
     const campaigns = [
-        process.env.INTEMPT_POPUPS_CAMPAIGN_ID
+        process.env.INTEMPT_POPUPS_CAMPAIGN1_ID,
+        process.env.INTEMPT_POPUPS_CAMPAIGN2_ID,
+        process.env.INTEMPT_POPUPS_CAMPAIGN3_ID
     ];
 
     if (!isEmailValid(email)) {
