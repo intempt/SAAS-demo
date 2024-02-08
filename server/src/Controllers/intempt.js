@@ -1,4 +1,4 @@
-import intempt from "../services/intempt/intempt.js";
+import intempt from "../Services/intempt/intempt.js";
 import { isEmailValid } from "../Services/utils/validators.js"
 import { responseStatuses } from "../Services/utils/response.js";
 

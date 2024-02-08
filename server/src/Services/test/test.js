@@ -1,4 +1,4 @@
-import intempt from "../../services/intempt/intempt.js";
+import intempt from "../intempt/intempt.js";
 
 export const CreateIntemptProfile = async (req, res) => {
     let email = req.body.email;
