@@ -14,7 +14,7 @@ const ModalFooter = ({contentConfig}) => {
   return (
     <BodyWrapper>
       {contentConfig.length && contentConfig.map((content, index) => (
-        <ContentSwitcher id={`modal_footer_${index}`} content={content}/>
+        <ContentSwitcher key={`modal_footer_${index}`} id={`modal_footer_${index}`} content={content}/>
       ))}
     </BodyWrapper>
   );

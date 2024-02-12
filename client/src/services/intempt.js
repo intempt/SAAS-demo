@@ -77,6 +77,10 @@ export const intemptEventCreatedMlTask = (page_url) => {
   recordEvent('created_ml_task', {page_url})
 }
 
+export const intemptEventViewedPopup = (data = {}) => {
+  recordEvent('viewed_popup', data)
+}
+
 export const IntemptScriptsLoader = () => (
     <script
         src="https://cdn.intempt.com/intempt.min.js"

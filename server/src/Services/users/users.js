@@ -1,5 +1,5 @@
 import { sendEmail } from '../../Config/email.js';
-import { getUser } from '../../Model/sql/auth/authentication.js';
+import { getUser } from '../../Model/mongo/auth/authentication.js';
 import { getAppUsersModel, CreateInvite, VerifyInviteModel } from '../../Model/mongo/users/users.js';
 import { nanoid } from 'nanoid';
 

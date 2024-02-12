@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import {getIntemptModalConfig} from "../utils/intemptModal";
 import getOrgId from "../utils/orgId";
+import {intemptEventViewedPopup} from "../services/intempt";
 
 const campaigns = [
   process.env.NEXT_PUBLIC_INTEMPT_POPUPS_CAMPAIGN1_ID,
@@ -65,6 +66,8 @@ const useIntemptCampaigns = () => {
                   response.data.experience &&
                   typeof response.data.experience.campaignStateMismatch === 'undefined'
               ) {
+                intemptEventViewedPopup();
+
                 SetModal({
                   open: true,
                   closeOnBackdrop: false,
