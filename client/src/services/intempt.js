@@ -78,7 +78,7 @@ export const intemptEventCreatedMlTask = (page_url) => {
 }
 
 export const intemptEventViewedPopup = (popupName) => {
-  recordEvent('viewed_popup', { popupName })
+  recordEvent('popup_views', { popupName })
 }
 
 export const IntemptScriptsLoader = () => (
