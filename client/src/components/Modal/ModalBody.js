@@ -15,7 +15,11 @@ const ModalBody = ({contentConfig = []}) => {
   return (
     <BodyWrapper>
       {contentConfig.length && contentConfig.map((content, index) => (
-        <ContentSwitcher id={`modal_body_${index}`} content={content}/>
+        <ContentSwitcher
+            key={`modal_body_${index}`}
+            id={`modal_body_${index}`}
+            content={content}
+        />
       ))}
     </BodyWrapper>
   );

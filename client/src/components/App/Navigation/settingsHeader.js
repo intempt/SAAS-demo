@@ -11,7 +11,7 @@ const SettingsHeader = ({ org_id }) => {
   return (
     <Wrapper>
       <HeaderLink path={`/app/${org_id}/settings`} text="Organization" />
-      <HeaderLink path={`/app/${org_id}/settings/payment`} text="Payment" />
+      {/*<HeaderLink path={`/app/${org_id}/settings/payment`} text="Payment" />*/}
       <HeaderLink path={`/app/${org_id}/settings/subscription`} text="Subscription" />
     </Wrapper>
   );

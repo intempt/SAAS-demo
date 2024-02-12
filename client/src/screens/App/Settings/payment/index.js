@@ -37,7 +37,7 @@ const PaymentSettings = () => {
 
   useEffect(() => {
     if (stripe_customer_id) {
-      getWallet();
+      //getWallet();
     }
   }, [orgState]);
 

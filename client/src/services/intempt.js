@@ -73,6 +73,10 @@ export const intemptEventInviteTeamMembers = (team_member_invited, invite_email)
   recordEvent('invite_team_members', {team_member_invited, invite_email})
 }
 
+export const intemptEventSubscription = (plan_name, subscription) => {
+  recordEvent('subscriptions', {plan_name, subscription})
+}
+
 export const intemptEventCreatedMlTask = (page_url) => {
   recordEvent('created_ml_task', {page_url})
 }

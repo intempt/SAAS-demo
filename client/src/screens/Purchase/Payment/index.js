@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Elements } from '@stripe/react-stripe-js';
-
-import stripeConfig from '../../../services/stripe';
+//import { Elements } from '@stripe/react-stripe-js';
+//import stripeConfig from '../../../services/stripe';
 
 import CheckoutForm from './checkoutForm';
 
@@ -24,9 +23,9 @@ const Wrapper = styled.div`
 const Purchase = () => {
   return (
     <Wrapper>
-      <Elements stripe={stripeConfig}>
+      {/*<Elements stripe={stripeConfig}>*/}
         <CheckoutForm />
-      </Elements>
+      {/*</Elements>*/}
     </Wrapper>
   );
 };

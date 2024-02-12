@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+//import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/router';
-import { FaRegCreditCard } from 'react-icons/fa';
-import { Spin } from 'antd';
+//import { FaRegCreditCard } from 'react-icons/fa';
+//import { Spin } from 'antd';
 import OrgContext from '../../../utils/orgContext';
 import ApiContext from '../../../utils/apiContext';
 import AuthContext from '../../../utils/authContext';
-import axios from '../../../services/axios';
+//import axios from '../../../services/axios';
 import { colors, breakpoints } from '../../../styles/theme';
 import Button from '../../../components/Common/buttons/PrimaryButton';
-import Card from '../../../components/Common/Card';
+import {intemptEventSubscription} from "../../../services/intempt";
+//import Card from '../../../components/Common/Card';
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,7 +44,7 @@ const PaymentInfo = styled.div`
   background-color: white;
   margin-left: 2rem;
   margin-right: 1rem;
-  width: 70%;
+  width: 100%;
   height: max-content;
   padding: 1rem;
   @media (max-width: ${breakpoints.small}) {
@@ -116,26 +117,26 @@ const StyledHr = styled.hr`
 const CheckoutForm = () => {
   const location = useRouter();
   const { orgState } = useContext(OrgContext);
-  const { id, stripe_customer_id, primary_email, org_name } = orgState;
-  const { fetchFailure, fetchInit, fetchSuccess, apiState } = useContext(ApiContext);
-  const { isLoading } = apiState;
-  const { authState } = useContext(AuthContext);
-  let token = authState?.user.jwt_token;
-  const headers = { Authorization: `Bearer ${token}` };
+  //const { id, stripe_customer_id, primary_email, org_name } = orgState;
+  //const { fetchFailure, fetchInit, fetchSuccess, apiState } = useContext(ApiContext);
+  //const { isLoading } = apiState;
+  //const { authState } = useContext(AuthContext);
+  //let token = authState?.user.jwt_token;
+  //const headers = { Authorization: `Bearer ${token}` };
 
   const [plan, setPlan] = useState();
   const [price, setPrice] = useState();
   const [planType, setPlanType] = useState();
 
   const [isUpgradeFlow, setUpgradeFlow] = useState();
-  const [subscription_id, setSubId] = useState();
-  const [subscription_item, setSubItem] = useState();
+  //const [subscription_id, setSubId] = useState();
+  //const [subscription_item, setSubItem] = useState();
 
-  const [paymentMethod, setPaymentMethod] = useState();
-  const [payCards, setPayCards] = useState([]);
+  //const [paymentMethod, setPaymentMethod] = useState();
+  //const [payCards, setPayCards] = useState([]);
 
-  const stripe = useStripe();
-  const elements = useElements();
+  //const stripe = useStripe();
+  //const elements = useElements();
 
   /* eslint-disable */
 
@@ -146,23 +147,23 @@ const CheckoutForm = () => {
     setPrice(location.query?.price);
     setPlanType(location.query?.planType);
 
-    setUpgradeFlow(location.query?.isUpgradeFlow);
-    setSubId(location.query?.subscription_id);
-    setSubItem(location.query?.subscription_item);
+    //setUpgradeFlow(location.query?.isUpgradeFlow);
+    //setSubId(location.query?.subscription_id);
+    //setSubItem(location.query?.subscription_item);
 
-    console.log(location);
+    //console.log(location);
   }, [location.isReady]);
 
-  useEffect(() => {
-    return () => fetchSuccess();
-  }, []);
+  //useEffect(() => {
+    //return () => fetchSuccess();
+  //}, []);
 
-  useEffect(() => {
-    if (stripe_customer_id) getWallet();
-  }, [orgState]);
+  //useEffect(() => {
+    //if (stripe_customer_id) getWallet();
+  //}, [orgState]);
   /* eslint-enable */
 
-  const getWallet = async () => {
+ /* const getWallet = async () => {
     fetchInit();
     //get customers list of available payment methods
     let params = {
@@ -177,9 +178,9 @@ const CheckoutForm = () => {
     setPayCards(cards);
 
     fetchSuccess();
-  };
+  };*/
 
-  const addPaymentMethod = async (event) => {
+  /*const addPaymentMethod = async (event) => {
     event.preventDefault();
     fetchInit();
 
@@ -213,9 +214,9 @@ const CheckoutForm = () => {
     getWallet();
     setPaymentMethod(setupIntent.payment_method);
     fetchSuccess();
-  };
+  };*/
 
-  const setIcons = (brand) => {
+/*  const setIcons = (brand) => {
     switch (brand) {
       case 'visa':
         return <CardBrandImage src="/credit card icons/visa.png" alt="Visa logo" />;
@@ -233,9 +234,9 @@ const CheckoutForm = () => {
       default:
         return <FaRegCreditCard />;
     }
-  };
+  };*/
 
-  const updateSubscription = async () => {
+/*  const updateSubscription = async () => {
     fetchInit();
 
     let planSelect = plan;
@@ -249,12 +250,12 @@ const CheckoutForm = () => {
     });
 
     location.push('/purchase/confirm');
-  };
+  };*/
 
   const createSubscription = async () => {
-    fetchInit();
+    //fetchInit();
 
-    let payment_method = paymentMethod;
+    /*let payment_method = paymentMethod;
     let customer = stripe_customer_id;
     let planSelect = plan;
     let org_id = id;
@@ -265,24 +266,25 @@ const CheckoutForm = () => {
     //create subscription
     let result = await axios.post('/stripe/create-subscription', data, { headers }).catch((err) => {
       fetchFailure(err);
-    });
+    });*/
 
-    if (result.data.status === 'active' || result.data.status === 'trialing') {
+
+
+    //if (result.data.status === 'active' || result.data.status === 'trialing') {
+      intemptEventSubscription(planType, plan);
       location.push('/purchase/confirm');
-    } else {
-      let error = {
-        type: 'Stripe Confirmation Error',
-        message: 'Stripe Confirmation Failed, Please contact support'
-      };
-      fetchFailure(error);
-    }
+    //} else {
+      //let error = {
+        //type: 'Stripe Confirmation Error',
+        //message: 'Stripe Confirmation Failed, Please contact support'
+      //};
+      //fetchFailure(error);
+    //}
   };
 
   return (
-   
-    
     <Wrapper>
-      <PaymentInfo>
+      {/*<PaymentInfo>
         <Spin tip="Loading" spinning={isLoading}>
           <h2>Purchasing Subscription for {org_name}</h2>
           <h3>Please Choose Payment Method</h3>
@@ -322,14 +324,14 @@ const CheckoutForm = () => {
             </form>
           </Card>
         </Spin>
-      </PaymentInfo>
+      </PaymentInfo>*/}
 
-      <Spin tip="Loading" spinning={isLoading}>
+      <PaymentInfo>
         <PaymentConfirm>
           <h3>
-            {isUpgradeFlow ? <span>Changing to</span> : <span>Purchasing</span>} {planType} Plan
+            {/*{isUpgradeFlow ? <span>Changing to</span> : <span>Purchasing</span>} {planType} Plan*/}
+            {<span>Purchasing</span>} {planType} Plan
           </h3>
-
           <PaymentConfirmRow>
             <div>{planType}</div>
             <div>
@@ -344,13 +346,13 @@ const CheckoutForm = () => {
             <div>${price}</div>
           </PaymentConfirmRow>
           <Button
-            disabled={!paymentMethod}
-            onClick={isUpgradeFlow ? updateSubscription : createSubscription}
+            //onClick={isUpgradeFlow ? updateSubscription : createSubscription}
+              onClick={createSubscription}
           >
             Confirm
           </Button>
         </PaymentConfirm>
-      </Spin>
+      </PaymentInfo>
     </Wrapper>
 
   );

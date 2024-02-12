@@ -13,7 +13,11 @@ const ContentButtons = ({buttons}) => {
   return (
     <ButtonsWrapper>
       {buttons.length && buttons.map((button, index) => (
-        <ContentSwitcher id={`modal_buttons_${index}`} content={button}/>
+        <ContentSwitcher
+            key={`modal_buttons_${index}`}
+            id={`modal_buttons_${index}`}
+            content={button}
+        />
       ))}
     </ButtonsWrapper>
   );
