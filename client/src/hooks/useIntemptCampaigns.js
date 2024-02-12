@@ -66,7 +66,9 @@ const useIntemptCampaigns = () => {
                   response.data.experience &&
                   typeof response.data.experience.campaignStateMismatch === 'undefined'
               ) {
-                intemptEventViewedPopup();
+                if (response.data.experience.eventTitle !== 'undefined') {
+                  intemptEventViewedPopup(response.data.experience.eventTitle);
+                }
 
                 SetModal({
                   open: true,
