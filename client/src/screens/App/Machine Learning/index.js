@@ -7,6 +7,8 @@ import Button from '../../../components/Common/buttons/SecondaryButton';
 import Card from '../../../components/Common/Card';
 import FieldLabel from '../../../components/Common/forms/FieldLabel';
 import TextInput from '../../../components/Common/forms/TextInput';
+import {intemptEventCreatedMlTask} from "../../../services/intempt";
+import {useRouter} from "next/router";
 
 const InputWrapper = styled.div`
   padding-top: 1.5rem;
@@ -21,6 +23,8 @@ const mlServerUrl = 'http://127.0.0.1:5000/machine-learning';
 
 const MachineLearning = () => {
   const [prediction, setPrediction] = useState();
+  const location = useRouter();
+  const currentPath = location.asPath;
 
   //send form data as inputs to ml algorithm
   const mlAnalysis = async (event) => {
@@ -49,9 +53,14 @@ const MachineLearning = () => {
       value13: event.target.renovate.value
     });
 
-    let result = await axios.post(mlServerUrl, data, headers).catch((err) => console.log(err));
+    let result = await axios.post(mlServerUrl, data, headers)
+      .catch((err) =>
+        console.log(err)
+      );
 
-    setPrediction(result.data.prediction[0]);
+    intemptEventCreatedMlTask(currentPath)
+
+    setPrediction(result?.data?.prediction[0]);
   };
 
   return (

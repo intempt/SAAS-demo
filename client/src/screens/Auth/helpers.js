@@ -2,6 +2,7 @@ import jwt_decode from 'jwt-decode';
 import * as Yup from 'yup';
 import axios from '../../services/axios';
 import { setAnalyticsUserId, sendEventToAnalytics } from '../../services/analytics';
+import {intemptEventLogin, intemptEventSignUp} from "../../services/intempt";
 
 export const LoginAuth = async (
   authRes,
@@ -46,8 +47,9 @@ export const LoginAuth = async (
 
   sendEventToAnalytics('login', { method: 'Email' });
   setAnalyticsUserId(id);
+  intemptEventLogin(email)
 
-  //save user info to React context
+  // Save user info to React context
   await LogIn(user);
 
   //navigate to correct route based on flow
@@ -98,6 +100,8 @@ export const SignupAuth = async (
   const confirmEmailUrl = `${domainUrl}/auth/confirmedemail`;
 
   let authData = { email, username, token, confirmEmailUrl, isInviteFlow, invite_key };
+
+  intemptEventSignUp(username, email)
 
   await axios.post(`/auth/signup`, authData).catch((err) => {
     fetchFailure(err);

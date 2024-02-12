@@ -1,19 +1,18 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Spin, message } from 'antd';
-import Head from 'next/head'
 import AuthContext from '../../../utils/authContext';
 import getOrgId from '../../../utils/orgId';
 import ApiContext from '../../../utils/apiContext';
 import { colors } from '../../../styles/theme';
 import axios from '../../../services/axios';
 import { sendEventToAnalytics } from '../../../services/analytics';
-import  CreateObjectIntempt from '../../../../public/createobjectsc'
 import Button from '../../../components/Common/buttons/SecondaryButton';
 import Card from '../../../components/Common/Card';
 import FieldLabel from '../../../components/Common/forms/FieldLabel';
 import TextArea from '../../../components/Common/forms/TextArea';
 import TextInput from '../../../components/Common/forms/TextInput';
+import {intemptEventCreatedAnObject} from "../../../services/intempt";
 
 const Title = styled.h1`
   font-size: 1.25rem;
@@ -53,11 +52,13 @@ const CreateTask = () => {
     let description = event.target.description.value;
     let data = { title, description, author, org_id };
 
-    await axios.post(`/api/post/todo`, data, { headers }).catch((err) => {
+    await axios.post(`/api/post/todo`, data, {headers}).catch((err) => {
       fetchFailure(err);
     });
 
-    sendEventToAnalytics('create_todo', { description: 'user created todo' });
+    intemptEventCreatedAnObject(title, description, author)
+
+    sendEventToAnalytics('create_todo', {description: 'user created todo'});
 
     setTitle('');
     setDescription('');
@@ -76,12 +77,6 @@ const CreateTask = () => {
   return (
 
     <>
-    <Head>
-    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
-    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
-    </Head>
-    <CreateObjectIntempt></CreateObjectIntempt>
-
     <div>
       <Title>Create Todo</Title>
       <form onSubmit={postTodo}>

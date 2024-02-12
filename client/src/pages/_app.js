@@ -29,6 +29,8 @@ import { pageView } from '../services/analytics';
 
 import { silentAuth } from '../utils/helpers';
 import ModalComponent from "@components/Modal/ModalComponent";
+import Head from "next/head";
+import {IntemptScriptsLoader} from "../services/intempt";
 
 const NoLayout = ({ children }) => children;
 
@@ -99,22 +101,28 @@ function MyApp(props) {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, LogIn, LogOut, firebase }}>
-      <ApiContext.Provider value={{ apiState, fetchFailure, fetchInit, fetchSuccess }}>
-        <OrgContext.Provider value={{SetOrg, orgState}}>
-          <ModalContext.Provider value={{SetModal, modalState, RemoveModal}}>
-            <CaslContext.Provider value={ability}>
-              <ModalComponent />
-              <ThemeProvider theme={theme}>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </ThemeProvider>
-            </CaslContext.Provider>
-          </ModalContext.Provider>
-        </OrgContext.Provider>
-      </ApiContext.Provider>
-    </AuthContext.Provider>
+      <>
+        <Head>
+            <IntemptScriptsLoader />
+        </Head>
+
+        <AuthContext.Provider value={{ authState, LogIn, LogOut, firebase }}>
+          <ApiContext.Provider value={{ apiState, fetchFailure, fetchInit, fetchSuccess }}>
+            <OrgContext.Provider value={{SetOrg, orgState}}>
+              <ModalContext.Provider value={{SetModal, modalState, RemoveModal}}>
+                <CaslContext.Provider value={ability}>
+                  <ModalComponent />
+                  <ThemeProvider theme={theme}>
+                    <Layout>
+                      <Component {...pageProps} />
+                    </Layout>
+                  </ThemeProvider>
+                </CaslContext.Provider>
+              </ModalContext.Provider>
+            </OrgContext.Provider>
+          </ApiContext.Provider>
+        </AuthContext.Provider>
+      </>
   );
 }
 

@@ -18,6 +18,7 @@ import TextInput from '../../../../components/Common/forms/TextInput';
 import SecondaryButton from '../../../../components/Common/buttons/SecondaryButton';
 import DangerButton from '../../../../components/Common/buttons/DangerButton';
 import { FcHighPriority } from 'react-icons/fc';
+import {intemptEventClickedDeleteOrganization} from "../../../../services/intempt";
 
 const Title = styled.h1`
   font-size: 1.5rem;
@@ -95,6 +96,8 @@ const OrgSettings = () => {
     await axios.delete('/api/org', { params, headers }).catch((err) => {
       fetchFailure(err);
     });
+
+    intemptEventClickedDeleteOrganization(org_name)
 
     router.push('/user/dashboard');
   };

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-//import Tour from 'reactour';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import PrimaryButton from '../../../components/Common/buttons/PrimaryButton';
 import DoneButton from '../../../components/Common/buttons/CancelButton';
 import Loadable from 'react-loadable';
-import Head from 'next/head'
-import OnBoardingIntempt from '../../../../public/onboardingdemosc'
+import {intemptEventCompletedOnboarding} from "../../../services/intempt";
 
 //solves reactour ssr issue
 const Tour = Loadable({
@@ -45,23 +43,28 @@ const steps = [
 const Onboarding = () => {
   const [isTourOpen, setTourOpen] = useState(false);
 
+  const onStartOnboarding = () => {
+    setTourOpen(true)
+  }
+
+  const onFinishOnboarding = (e) => {
+    intemptEventCompletedOnboarding(e.target.innerText || e.target.outerHTML )
+    setTourOpen(false)
+  }
+
   return (
     <>
-    <Head>
-    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
-    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
-    </Head>
-    <OnBoardingIntempt></OnBoardingIntempt>
+
     <div>
       <h1>Onboarding</h1>
       <h2>Click Below To Start Tour</h2>
-      <PrimaryButton onClick={() => setTourOpen(true)}>Start</PrimaryButton>
+      <PrimaryButton onClick={onStartOnboarding}>Start</PrimaryButton>
       <div>
         <Tour
           lastStepNextButton={<DoneButton>Done!</DoneButton>}
           steps={steps}
           isOpen={isTourOpen}
-          onRequestClose={() => setTourOpen(false)}
+          onRequestClose={onFinishOnboarding}
         />
       </div>
 

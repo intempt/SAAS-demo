@@ -1,6 +1,6 @@
 import { sendEmail } from '../../Config/email.js';
 import { getUser } from '../../Model/sql/auth/authentication.js';
-import { getAppUsersModel, CreateInvite, VerifyInviteModel } from '../../Model/sql/users/users.js';
+import { getAppUsersModel, CreateInvite, VerifyInviteModel } from '../../Model/mongo/users/users.js';
 import { nanoid } from 'nanoid';
 
 export const GetAppUsers = async (req, res) => {
@@ -24,8 +24,8 @@ export const InviteUser = async (req, res) => {
   //check user exists
   let userExists = await getUser(recipient_email);
 
-  //If user doesnt exist, require sign up flow,
-  //If exists use login flow
+  // If user doesn't exist, require sign up flow,
+  // If exists use login flow
   if (!userExists) {
     redirectUrl = `${domainUrl}/auth/signup/?isInviteFlow=${true}&verify_key=${randomBytes}`;
     isSignup = true;

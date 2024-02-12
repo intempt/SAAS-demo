@@ -5,14 +5,11 @@ import * as Yup from 'yup';
 import { Spin, message } from 'antd';
 import { Table } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import InvitationIntempt from '../../../../public/invitationscript'
-import Head from 'next/head'
 import Can from '../../../services/casl';
 import axios from '../../../services/axios';
 import AuthContext from '../../../utils/authContext';
 import ApiContext from '../../../utils/apiContext';
 import getOrgId from '../../../utils/orgId';
-import OrgContext from '../../../utils/orgContext';
 
 import Button from '../../../components/Common/buttons/SecondaryButton';
 import Card from '../../../components/Common/Card';
@@ -20,6 +17,7 @@ import FieldLabel from '../../../components/Common/forms/FieldLabel';
 import TextInput from '../../../components/Common/forms/TextInput';
 import InputWrapper from '../../../components/Common/forms/TextInputWrapper';
 import ErrorText from '../../../components/Common/errorText';
+import {intemptEventInviteTeamMembers} from "../../../services/intempt";
 
 const { Column } = Table;
 
@@ -76,6 +74,7 @@ const Users = () => {
     });
 
     fetchSuccess();
+    intemptEventInviteTeamMembers(true, recipient_email)
     message.success('Invite Sent');
   };
 
@@ -104,11 +103,6 @@ const Users = () => {
 
   return (
     <>
-    <Head>
-    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
-    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
-    </Head>
-    <InvitationIntempt></InvitationIntempt>
     <div>
       <h1>Users</h1>
       <Card>

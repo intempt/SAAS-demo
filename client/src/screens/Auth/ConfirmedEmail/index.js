@@ -16,6 +16,7 @@ import AuthCard from '../../../components/Auth/authCard';
 import LoadingOverlay from '../../../components/Common/loadingOverlay';
 import FieldLabel from '../../../components/Common/forms/FieldLabel';
 import TextInput from '../../../components/Common/forms/TextInput';
+import {intemptEventCreateOrganization} from "../../../services/intempt";
 
 const Wrapper = styled.div`
   background-color: ${colors.gray50};
@@ -170,6 +171,8 @@ const ConfirmedEmail = () => {
     await axios.post('/api/org', data, { headers }).catch((err) => {
       fetchFailure(err);
     });
+
+    intemptEventCreateOrganization(org_name)
 
     // Save user data to global state
     let user = { id: user_id, username, jwt_token, email };

@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
-import Head from 'next/head'
 import AuthContext from '../../../utils/authContext';
 import ApiContext from '../../../utils/apiContext';
 import { ValidSchema, SignupAuth } from '../helpers';
-import Registration from '../../../../public/registerscript'
 import SEO from '../../../components/Marketing/Layout/seo';
 import ErrorText from '../../../components/Common/errorText';
 import InputWrapper from '../../../components/Common/forms/TextInputWrapper';
@@ -109,14 +106,6 @@ const Signup = () => {
 
   return (
     <React.Fragment>
-     <Head>
-  <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
-  <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
-</Head>
-
-
-
-     
       <SEO seoData={seoData} />
       <div>
         {isLoading && <LoadingOverlay />}
@@ -170,7 +159,6 @@ const Signup = () => {
                 </InputWrapper>
                 {errors.password && touched.password && <ErrorText>{errors.password}</ErrorText>}
                 <Button type="submit">SignUp</Button>
-                <Registration></Registration>
               </form>
             )}
           </Formik>

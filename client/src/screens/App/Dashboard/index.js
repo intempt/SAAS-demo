@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import Stats from './stats';
 import ActivityList from './activityList';
@@ -7,6 +7,8 @@ import LineBarAreaComposedChart from './Charts/LineBarAreaComposedChart';
 import StackedChart from './Charts/StackedChart';
 import AreaChartFillByValue from './Charts/AreaChartFillByValue';
 import SimpleBarChart from './Charts/SimpleBarChart';
+import {intemptEventVisitedDashboard} from "../../../services/intempt";
+import {useRouter} from "next/router";
 
 const Title = styled.h1`
   font-weight: 600;
@@ -28,6 +30,16 @@ const ChartsContainer = styled.div`
 `;
 
 const Dashboard = () => {
+  const router = useRouter();
+  const {org_id} = router.query;
+  const currentUrl = router.asPath;
+
+  useEffect(() => {
+    if (org_id) {
+      intemptEventVisitedDashboard(currentUrl)
+    }
+  }, [org_id])
+
   return (
     <div>
       <Title>Dashboard</Title>

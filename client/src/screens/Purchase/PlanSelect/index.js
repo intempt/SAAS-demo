@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { colors, breakpoints } from '../../../styles/theme';
 import OrgContext from '../../../utils/orgContext';
-import Head from 'next/head'
-import BasicPlanIntempt from '../../../../public/basicplansc';
 
 
 const CardsWrapper = styled.div`
@@ -137,19 +134,12 @@ const PlanSelect = () => {
   const submitPlan = () => {
     location.push({
       pathname: '/purchase/payment',
-      query: { plan, price, planType, subscription_id, isUpgradeFlow, subscription_item }
+      query: {plan, price, planType, subscription_id, isUpgradeFlow, subscription_item}
     });
   };
 
   return (
     <>
-    <Head>
-    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
-    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
-    </Head>
-   <BasicPlanIntempt></BasicPlanIntempt>
-
-
     <div>
       <PurchaseHeader>Purchasing SAAS Pro </PurchaseHeader>
       <PurchaseText>for {org_name}</PurchaseText>

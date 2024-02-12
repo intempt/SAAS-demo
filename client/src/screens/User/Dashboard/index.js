@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Empty } from 'antd';
-import OrgCreationIntempt from '../../../../public/onboardingscript'
-import Head from 'next/head'
 
 import AuthContext from '../../../utils/authContext';
 import ApiContext from '../../../utils/apiContext';
@@ -15,10 +13,10 @@ import LoadingOverlay from '../../../components/Common/loadingOverlay';
 import Card from '../../../components/Common/Card';
 import Button from '../../../components/Common/buttons/PrimaryButton';
 
-import DangerButton from '../../../components/Common/buttons/DangerButton';
 import TextInput from '../../../components/Common/forms/TextInput';
 import FieldLabel from '../../../components/Common/forms/FieldLabel';
 import TextInputWrapper from '../../../components/Common/forms/TextInputWrapper';
+import {intemptEventCreateOrganization} from "../../../services/intempt";
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -131,6 +129,8 @@ const Dashboard = () => {
       fetchFailure(err);
     });
 
+    intemptEventCreateOrganization(org_name)
+
     getOrgs();
     fetchSuccess();
   };
@@ -142,11 +142,6 @@ const Dashboard = () => {
 
   return (
     <React.Fragment>
-    <Head>
-    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
-    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
-    </Head>
-     <OrgCreationIntempt></OrgCreationIntempt>
       <SEO seoData={seoData} />
       <div>
         {isLoading && <LoadingOverlay />}
@@ -155,9 +150,9 @@ const Dashboard = () => {
           <AppsSection>
             <h2>My Orgs:</h2>
             <AppsWrapper>
-              {!orgs.length == 0 ? (
+              {!!orgs.length ? (
                 orgs.map((org) => (
-                  <Link href={`/app/${org.id}/dashboard`} state={{ org }}>
+                  <Link key={org.id} href={`/app/${org.id}/dashboard`} state={{ org }}>
                     <a>
                       <StyledCard key={org.id}>
                         <StyledLink>{org.org_name}</StyledLink>

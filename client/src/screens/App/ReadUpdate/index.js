@@ -7,8 +7,7 @@ import Todo from './todo';
 import { Empty, Spin } from 'antd';
 import axios from '../../../services/axios';
 import Card from '../../../components/Common/Card';
-import Head from 'next/head'
-import UpdateObjectIntempt from '../../../../public/updateobjectssc'
+import {intemptEventDeletedAnObject, intemptEventEditedAnObject} from "../../../services/intempt";
 
 
 const StyledMain = styled.div`
@@ -67,6 +66,8 @@ const ReadUpdate = () => {
 
     setEdit(false);
 
+    intemptEventDeletedAnObject(todo.title, todo.description, todo.author)
+
     setTimeout(() => fetchTodos(), 300);
     fetchSuccess();
   };
@@ -83,6 +84,8 @@ const ReadUpdate = () => {
     await axios.put(`/api/put/todo`, data, { headers }).catch((err) => {
       fetchFailure(err);
     });
+
+    intemptEventEditedAnObject(title, description, author)
 
     setEdit(false);
     //Save data to context to limit api calls
@@ -107,12 +110,6 @@ const ReadUpdate = () => {
 
   return (
     <>
-    <Head>
-    <script src='https://app.staging.intempt.com/ev/js/ev.min.js'></script>
-    <script src='https://cdn.staging.intempt.com/intempt.min.js'></script>
-    </Head>
-    
-
     <StyledMain>
       <Title>Todos: </Title>
       <Card>

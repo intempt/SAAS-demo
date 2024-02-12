@@ -1,4 +1,5 @@
 import { LOGIN, LOGOUT } from '../actions/actionTypes';
+import {intemptEventLogout} from "../../services/intempt";
 
 export const initialStateAuth = {
   isAuthenticated: false,
@@ -24,6 +25,8 @@ export const authReducer = (state, action) => {
 
       return { isAuthenticated: true, user };
     case LOGOUT:
+      intemptEventLogout();
+
       localStorage.removeItem('expiresIn');
       localStorage.removeItem('user');
 
