@@ -3,16 +3,16 @@ import firebaseAdmin from '../../Config/firebase.js';
 import { sendEmail } from '../../Config/email.js';
 import { UpdateStripeCustomer } from '../stripe/stripeCustomer.js';
 import { UpdateContact } from '../users/contacts.js';
-import { verifyUser } from '../../Model/mongo/auth/authentication.js';
+import { verifyUser } from '../../Model/sql/auth/authentication.js';
 import { CreateContact } from '../users/contacts.js';
 import { nanoid } from 'nanoid';
-import { GetOrgsbyEmail } from '../../Model/mongo/org/org.js';
+import { GetOrgsbyEmail } from '../../Model/sql/org/org.js';
 import {
   saveUsertoDB,
   getUser,
   updateUsernameModel,
   updateEmailModel
-} from '../../Model/mongo/auth/authentication.js';
+} from '../../Model/sql/auth/authentication.js';
 
 export const CreateUser = async (req, res) => {
   let verify_key = req.body.verify_key;
