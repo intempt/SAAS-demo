@@ -40,13 +40,13 @@ const Text = styled.div`
 
 const ConfirmSub = () => {
   const router = useRouter();
-  const { LogOut } = useContext(AuthContext);
+  //const { LogOut } = useContext(AuthContext);
 
   /* eslint-disable */
-  useEffect(() => {
+  //useEffect(() => {
     //maybe add purchase event
-    LogOut();
-  }, []);
+    //LogOut();
+  //}, []);
   /* eslint-enable */
 
   return (
