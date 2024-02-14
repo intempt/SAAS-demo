@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-
 import { breakpoints } from '../../../styles/theme';
-import AuthContext from '../../../utils/authContext';
-
 import Card from '../../../components/Common/Card';
 import ConfirmButton from '../../../components/Purchase/purchaseButton';
+import OrgContext from "../../../utils/orgContext";
 
 const Wrapper = styled.div`
   margin-top: 2rem;
@@ -39,23 +37,18 @@ const Text = styled.div`
 `;
 
 const ConfirmSub = () => {
+  const { orgState } = useContext(OrgContext);
   const router = useRouter();
-  //const { LogOut } = useContext(AuthContext);
-
-  /* eslint-disable */
-  //useEffect(() => {
-    //maybe add purchase event
-    //LogOut();
-  //}, []);
-  /* eslint-enable */
 
   return (
     <Wrapper>
       <Card>
         <Title>Your Subscription Has Been Confirmed!</Title>
         <Text>Please sign in again to complete the process</Text>
-        <Text>Click below to navigate to the login screen</Text>
-        <ConfirmButton onClick={() => router.push('/auth/login')}>Click Here</ConfirmButton>
+        <Text>Click below to navigate to the home screen</Text>
+        <ConfirmButton onClick={() => router.push(`/app/${orgState.id}/dashboard`)}>
+            Click Here
+        </ConfirmButton>
       </Card>
     </Wrapper>
   );

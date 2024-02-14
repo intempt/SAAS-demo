@@ -31,14 +31,12 @@ const ChartsContainer = styled.div`
 
 const Dashboard = () => {
   const router = useRouter();
-  const {org_id} = router.query;
-  const currentUrl = router.asPath;
 
   useEffect(() => {
-    if (org_id) {
-      intemptEventVisitedDashboard(currentUrl)
-    }
-  }, [org_id])
+      if (router.isReady) {
+          intemptEventVisitedDashboard(router.asPath);
+      }
+  }, [router.isReady])
 
   return (
     <div>

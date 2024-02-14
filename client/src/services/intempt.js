@@ -27,30 +27,8 @@ export const intemptEventClickedDeleteOrganization = (app_name) => {
   recordEvent('clicked_delete_organization', {app_name})
 }
 
-const isFirstActionPerSession = (actionName) => {
-  const savedAction = sessionStorage.getItem(actionName)
-  const currentDate = new Date().getTime()
-
-  if (!savedAction) {
-    sessionStorage.setItem(actionName, currentDate);
-    return true;
-  }
-
-  const savedActionDate = new Date(parseInt(savedAction)).getTime()
-  const timeDelta = 1000 * 60 * 60 * 12 // 12h
-  if (savedActionDate + timeDelta < currentDate) {
-    sessionStorage.setItem(actionName, currentDate);
-    return true;
-  }
-
-  return false;
-}
-
 export const intemptEventVisitedDashboard = (page_url) => {
-  // Will send event once for every org.
-  if (isFirstActionPerSession(`visited_dashboard_${page_url}`)) {
-    recordEvent('visited_dashboard', {page_url})
-  }
+  recordEvent('visited_dashboard', {page_url})
 }
 
 export const intemptEventCompletedOnboarding = (button_name) => {
