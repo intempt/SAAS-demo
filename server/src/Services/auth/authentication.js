@@ -1,12 +1,12 @@
 import { setToken } from '../../Middleware/auth.js';
 import firebaseAdmin from '../../Config/firebase.js';
 import { sendEmail } from '../../Config/email.js';
-import { UpdateStripeCustomer } from '../stripe/stripeCustomer.js';
+//import { UpdateStripeCustomer } from '../stripe/stripeCustomer.js';
 import { UpdateContact } from '../users/contacts.js';
 import { verifyUser } from '../../Model/sql/auth/authentication.js';
 import { CreateContact } from '../users/contacts.js';
 import { nanoid } from 'nanoid';
-import { GetOrgsbyEmail } from '../../Model/sql/org/org.js';
+//import { GetOrgsbyEmail } from '../../Model/sql/org/org.js';
 import {
   saveUsertoDB,
   getUser,
@@ -129,12 +129,12 @@ export const updateEmail = async (req, res) => {
 
   //if the update email is an organization primary email,
   //update the email in stripe for all the orgs.
-  let orgs = await GetOrgsbyEmail(oldEmail);
-  if (orgs) {
+  //let orgs = await GetOrgsbyEmail(oldEmail);
+/*  if (orgs) {
     orgs.map(async (org) => {
       await UpdateStripeCustomer(org.stripe_customer_id, email);
     });
-  }
+  }*/
 
   await updateEmailModel(email, id);
   await UpdateContact(email, oldEmail);
