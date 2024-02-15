@@ -39,7 +39,7 @@ class IntemptService {
         }
     }
 
-    async getOptimization(campaignId, email) {
+    async getOptimization(email) {
         let response = {};
         logger.info("getOptimization:", {email})
 

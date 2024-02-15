@@ -21,7 +21,7 @@ export const GetOptimization = async (req, res) => {
         return;
     }
 
-    const response = await intempt.getOptimization(email, '/dashboard')
+    const response = await intempt.getOptimization(email)
 
     res.send(response);
 };
