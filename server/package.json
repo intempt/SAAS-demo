@@ -19,7 +19,7 @@
     "firebase-admin": "^9.11.1",
     "handlebars": "^4.7.7",
     "hbs": "^4.1.2",
-    "intempt-nodejs-sdk": "^0.1.4",
+    "intempt-nodejs-sdk": "^0.2.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",

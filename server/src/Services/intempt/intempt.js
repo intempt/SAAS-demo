@@ -16,7 +16,7 @@ const eventRecorder = IntemptSdk.EventRecorder.WithEventBatcher(
     new IntemptSdk.PushSource.SourcesApi(configuration),
 );
 
-const personalizationApi = new IntemptSdk.CDPMetadata.PersonalizationApi(
+const optimizationClient = new IntemptSdk.OptimizationClient(
     configuration
 );
 
@@ -39,26 +39,23 @@ class IntemptService {
         }
     }
 
-    async getExperience(campaignId, email, url) {
+    async getOptimization(campaignId, email) {
         let response = {};
-        logger.info("getExperience:", {campaignId, email, url})
+        logger.info("getOptimization:", {email})
 
         const requestParameters = {
-            orgName: process.env.INTEMPT_ORG_NAME,
-            projectName: process.env.INTEMPT_PROJECT_NAME,
-            campaignId: campaignId,
-            chooseExperience: {
-                userId: email,
-                url: url
-            }
+            identification: {
+                userId: email
+            },
+            groups: ['pop-up']
         };
 
         try {
-            logger.info("getExperience:" + JSON.stringify(requestParameters));
-            const experience = await personalizationApi.chooseExperience(requestParameters);
-            logger.warn('getExperience: success');
+            logger.info("getOptimization:" + JSON.stringify(requestParameters));
+            const rows = await optimizationClient.chooseRows(process.env.INTEMPT_ORG_NAME, process.env.INTEMPT_PROJECT_NAME, requestParameters);
+            logger.warn('getOptimization: success');
             response = {
-                experience: decodeResponse(experience)
+                rows: rows
             }
         } catch (error) {
             response = {

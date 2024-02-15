@@ -13,7 +13,7 @@ export const CreateIntemptProfile = async (req, res) => {
     res.send('Request sent!');
 };
 
-export const GetExperience = async (req, res) => {
+export const GetOptimization = async (req, res) => {
     let email = req.body.email;
 
     if (!email) {
@@ -21,11 +21,7 @@ export const GetExperience = async (req, res) => {
         return;
     }
 
-    const response = await intempt.getExperience(
-        process.env.INTEMPT_UPGRADE_TO_PREMIUM_CAMPAIGN_ID,
-        email,
-        '/dashboard'
-    )
+    const response = await intempt.getOptimization(email, '/dashboard')
 
     res.send(response);
 };
