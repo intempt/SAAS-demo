@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ModalHeader from "@components/Modal/ModalHeader";
 import ModalBody from "@components/Modal/ModalBody";
 import ModalFooter from "@components/Modal/ModalFooter";
-import useIntemptOptimization from "../../hooks/UseIntemptOptimization";
+import useIntemptOptimization from "../../hooks/useIntemptOptimization";
 
 const ModalBackdrop = styled.div`
     position: fixed;

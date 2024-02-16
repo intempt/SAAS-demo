@@ -32,6 +32,7 @@ const useIntemptOptimization = () => {
           ...configSkeleton,
           ...{
             params: {
+              url: encodeURI(url),
               email: authState.user.email
             },
             headers: {
@@ -50,20 +51,23 @@ const useIntemptOptimization = () => {
 
             if (response.status === 200 && response.data.rows) {
               for (let row in response.data.rows) {
-                if (row.body.eventTitle !== 'undefined') {
-                  intemptEventViewedPopup(row.eventTitle);
-                }
 
-                SetModal({
-                  open: true,
-                  closeOnBackdrop: false,
-                  ...getIntemptModalConfig(row.body, SetModal, RemoveModal, {
-                    "[org_id]": orgId
+                if (response.data.rows[row].group === 'pop-up') {
+                  const body = response.data.rows[row].body;
+
+                  if (body.eventTitle !== 'undefined') {
+                    intemptEventViewedPopup(body.eventTitle);
+                  }
+
+                  SetModal({
+                    open: true,
+                    closeOnBackdrop: false,
+                    ...getIntemptModalConfig(body, SetModal, RemoveModal, {
+                      "[org_id]": orgId
+                    })
                   })
-                })
+                }
               }
-
-              return;
             }
           } catch (error) {
             console.error(`Fetch error:`, error);

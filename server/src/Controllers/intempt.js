@@ -3,7 +3,8 @@ import { isEmailValid } from "../Services/utils/validators.js"
 import { responseStatuses } from "../Services/utils/response.js";
 
 export const GetOptimization = async (req, res) => {
-    let email = req.query.email;
+    const email = req.query.email;
+    const url = req.query.url || "";
 
     if (!isEmailValid(email)) {
         res.status(400).send({
@@ -14,7 +15,7 @@ export const GetOptimization = async (req, res) => {
         return;
     }
 
-    const response = await intempt.getOptimization(email)
+    const response = await intempt.getOptimization(email, url)
 
     res.status(200).send(response);
 };

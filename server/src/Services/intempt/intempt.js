@@ -1,7 +1,6 @@
 import IntemptSdk from "intempt-nodejs-sdk";
 import { v4 as uuidv4 } from "uuid";
 import { logger } from "../utils/logger.js";
-import { decodeResponse } from "../utils/response.js";
 
 const configuration = new IntemptSdk.Configuration({
     username: process.env.INTEMPT_USERNAME,
@@ -39,7 +38,7 @@ class IntemptService {
         }
     }
 
-    async getOptimization(email) {
+    async getOptimization(email, url = "") {
         let response = {};
         logger.info("getOptimization:", {email})
 
@@ -49,6 +48,10 @@ class IntemptService {
             },
             groups: ['pop-up']
         };
+
+        if (typeof url !== "undefined") {
+            requestParameters['url'] = url;
+        }
 
         try {
             logger.info("getOptimization:" + JSON.stringify(requestParameters));
