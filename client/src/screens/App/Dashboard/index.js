@@ -39,17 +39,17 @@ const Dashboard = () => {
   }, [router.isReady])
 
   return (
-    <div>
-      <Title>Dashboard</Title>
-      <Stats />
-      <ChartsContainer>
-        <LineBarAreaComposedChart />
-        <StackedChart />
-        <AreaChartFillByValue />
-        <SimpleBarChart />
-      </ChartsContainer>
-      <ActivityList />
-    </div>
+      <div>
+          <Title>Dashboard</Title>
+          <Stats/>
+          <ChartsContainer>
+              <LineBarAreaComposedChart/>
+              <StackedChart/>
+              <AreaChartFillByValue/>
+              <SimpleBarChart/>
+          </ChartsContainer>
+          <ActivityList/>
+      </div>
   );
 };
 export default Dashboard;
