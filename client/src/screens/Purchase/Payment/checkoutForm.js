@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 //import { FaRegCreditCard } from 'react-icons/fa';
 //import { Spin } from 'antd';
 import OrgContext from '../../../utils/orgContext';
-import ApiContext from '../../../utils/apiContext';
-import AuthContext from '../../../utils/authContext';
+//import ApiContext from '../../../utils/apiContext';
+//import AuthContext from '../../../utils/authContext';
 //import axios from '../../../services/axios';
 import { colors, breakpoints } from '../../../styles/theme';
 import Button from '../../../components/Common/buttons/PrimaryButton';
@@ -271,7 +271,8 @@ const CheckoutForm = () => {
 
 
     //if (result.data.status === 'active' || result.data.status === 'trialing') {
-      intemptEventSubscription(planType, plan);
+      const price = plan === 'basic' ? 99 : 299;
+      intemptEventSubscription(planType, price);
       location.push('/purchase/confirm');
     //} else {
       //let error = {
