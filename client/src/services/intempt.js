@@ -1,7 +1,10 @@
 import React from "react";
 
 export const recordEvent = (eventName, eventBody) => {
-  window.intempt.recordEvent(eventName, eventBody)
+  window.intempt.record({
+    eventTitle: eventName,
+    data: eventBody
+  })
 }
 
 export const intemptEventSignUp = (full_name, email) => {
@@ -10,13 +13,13 @@ export const intemptEventSignUp = (full_name, email) => {
 
 export const intemptEventLogin = (email) => {
   // Identifying user
-  window.intempt.identifyUser(email)
+  window.intempt.identify({userId: email})
   recordEvent('login', {email})
 }
 
 export const intemptEventLogout = () => {
   recordEvent('logout', {})
-  window.intempt.endSession()
+  window.intempt.logOut()
 }
 
 export const intemptEventCreateOrganization = (app_name) => {
@@ -63,12 +66,17 @@ export const intemptEventViewedPopup = (popupName) => {
   recordEvent('popup_views', { popupName })
 }
 
-export const IntemptScriptsLoader = () => (
-    <script
-        src="https://cdn.intempt.com/intempt.min.js"
-        data-organization={process.env.NEXT_PUBLIC_INTEMPT_ORG_NAME}
-        data-project={process.env.NEXT_PUBLIC_INTEMPT_PROJECT_NAME}
-        data-source={process.env.NEXT_PUBLIC_INTEMPT_SOURCE_ID}
-        data-key={process.env.NEXT_PUBLIC_INTEMPT_API_KEY}
-    ></script>
-);
+export const IntemptScriptsLoader = () => {
+  const organization = process.env.NEXT_PUBLIC_INTEMPT_ORG_NAME;
+  const project = process.env.NEXT_PUBLIC_INTEMPT_PROJECT_NAME;
+  const source = process.env.NEXT_PUBLIC_INTEMPT_SOURCE_ID;
+  const apiKey = process.env.NEXT_PUBLIC_INTEMPT_API_KEY;
+
+  const src = `https://cdn.intempt.com/v1/intempt.min.js?organization=${organization}&project=${project}&source=${source}&key=${apiKey}`;
+
+
+
+  return (
+      <script async src={src}></script>
+  );
+}
