@@ -197,7 +197,11 @@ const GrowthCard = () => (
         <StyledListItem text="Nam ut ipsa nesciunt culpa modi dolor" />
       </ul>
       <LinkWrapper>
-        <Link href="/auth/signup" aria-describedby="tier-growth" passHref>
+        <Link
+          href="/auth/signup"
+          aria-describedby="tier-growth"
+          passHref
+          legacyBehavior>
           <StyledLink>Start your trial</StyledLink>
         </Link>
       </LinkWrapper>

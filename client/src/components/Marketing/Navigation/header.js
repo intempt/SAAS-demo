@@ -216,9 +216,9 @@ const Header = () => {
     <Container>
       <LogoWrapper>
         <Link href="/">
-          <a>
-            <LargeLogo />
-          </a>
+
+          <LargeLogo />
+
         </Link>
       </LogoWrapper>
       <MenuWrapper ref={refMobile}>
@@ -241,15 +241,15 @@ const Header = () => {
           ) : null}
         </SolutionsWrapper>
 
-        <Link href="/pricing" passHref>
+        <Link href="/pricing" passHref legacyBehavior>
           <StyledLink isActive={location.asPath === '/pricing'}>Pricing</StyledLink>
         </Link>
       </Nav>
       <ButtonWrapper>
         <Link href="/auth/login" passHref>
-          <a>
-            <Button>Sign-In</Button>
-          </a>
+
+          <Button>Sign-In</Button>
+
         </Link>
       </ButtonWrapper>
     </Container>

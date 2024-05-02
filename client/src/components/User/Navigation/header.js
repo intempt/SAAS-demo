@@ -195,19 +195,19 @@ const MobileHeader = ({ mobileMenuHandler }) => {
       </MenuButton>
       <LogoWrapper>
         <Link href="/user/dashboard">
-          <a>
-            <LargeLogo textColor={colors.white} />
-          </a>
+
+          <LargeLogo textColor={colors.white} />
+
         </Link>
       </LogoWrapper>
       <LinksWrapper>
         <LinkItem>
-          <Link href="/user/teamapps" passHref>
+          <Link href="/user/teamapps" passHref legacyBehavior>
             <StyledLink isActive={location.asPath === '/user/teamapps'}>Team Apps</StyledLink>
           </Link>
         </LinkItem>
         <LinkItem>
-          <Link href="/user/settings/account" passHref>
+          <Link href="/user/settings/account" passHref legacyBehavior>
             <StyledLink isActive={location.asPath === '/user/settings/account'}>
               Settings
             </StyledLink>

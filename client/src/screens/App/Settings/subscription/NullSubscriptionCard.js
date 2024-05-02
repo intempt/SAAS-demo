@@ -16,9 +16,9 @@ const NullSubscriptionCard = () => {
       <h3>Click Below to add subscription</h3>
       <ButtonWrapper>
         <Link href="/purchase/plan">
-          <a>
-            <Button>Submit</Button>
-          </a>
+
+          <Button>Submit</Button>
+
         </Link>
       </ButtonWrapper>
     </Card>

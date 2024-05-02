@@ -30,7 +30,7 @@ const LoginFormHeader = () => (
   <Wrapper>
     <Title>Sign-In to Your Account</Title>
     <AltText>
-      <Link href="/auth/signup" passHref>
+      <Link href="/auth/signup" passHref legacyBehavior>
         <StyledLink>Dont have an Account? Sign-Up here</StyledLink>
       </Link>
     </AltText>

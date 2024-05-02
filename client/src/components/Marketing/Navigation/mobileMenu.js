@@ -171,71 +171,71 @@ const MobileMenu = ({ mobileMenuHandler }) => (
     <div>
       <Nav>
         <Link href="/pricing">
-          <a>
-            <Item>
-              <MenuImageWrapper>
-                {/*<!-- Heroicon name: view-grid -->*/}
-                <MenuImg src="/icons/view-grid.svg" alt="click" />
-              </MenuImageWrapper>
-              <Title>Pricing</Title>
-            </Item>
-          </a>
+
+          <Item>
+            <MenuImageWrapper>
+              {/*<!-- Heroicon name: view-grid -->*/}
+              <MenuImg src="/icons/view-grid.svg" alt="click" />
+            </MenuImageWrapper>
+            <Title>Pricing</Title>
+          </Item>
+
         </Link>
 
         <hr />
         <h3>Solutions</h3>
         <Link href="/product/page1">
-          <a>
-            <Item>
-              <MenuImageWrapper>
-                {/*<!-- Heroicon name: view-grid -->*/}
-                <MenuImg src="/icons/view-grid.svg" alt="click" />
-              </MenuImageWrapper>
-              <Title>Product Page 1</Title>
-            </Item>
-          </a>
+
+          <Item>
+            <MenuImageWrapper>
+              {/*<!-- Heroicon name: view-grid -->*/}
+              <MenuImg src="/icons/view-grid.svg" alt="click" />
+            </MenuImageWrapper>
+            <Title>Product Page 1</Title>
+          </Item>
+
         </Link>
         <Link href="/product/page2">
-          <a>
-            <Item>
-              <MenuImageWrapper>
-                {/*<!-- Heroicon name: view-grid -->*/}
-                <MenuImg src="/icons/view-grid.svg" alt="click" />
-              </MenuImageWrapper>
-              <Title>Product Page 2</Title>
-            </Item>
-          </a>
+
+          <Item>
+            <MenuImageWrapper>
+              {/*<!-- Heroicon name: view-grid -->*/}
+              <MenuImg src="/icons/view-grid.svg" alt="click" />
+            </MenuImageWrapper>
+            <Title>Product Page 2</Title>
+          </Item>
+
         </Link>
         <Link href="/product/page3">
-          <a>
-            <Item>
-              <MenuImageWrapper>
-                {/*<!-- Heroicon name: view-grid -->*/}
-                <MenuImg src="/icons/view-grid.svg" alt="click" />
-              </MenuImageWrapper>
-              <Title>Product Page 3</Title>
-            </Item>
-          </a>
+
+          <Item>
+            <MenuImageWrapper>
+              {/*<!-- Heroicon name: view-grid -->*/}
+              <MenuImg src="/icons/view-grid.svg" alt="click" />
+            </MenuImageWrapper>
+            <Title>Product Page 3</Title>
+          </Item>
+
         </Link>
         <Link href="/product/page4">
-          <a>
-            <Item>
-              <MenuImageWrapper>
-                {/*<!-- Heroicon name: view-grid -->*/}
-                <MenuImg src="/icons/view-grid.svg" alt="click" />
-              </MenuImageWrapper>
-              <Title>Product Page 4</Title>
-            </Item>
-          </a>
+
+          <Item>
+            <MenuImageWrapper>
+              {/*<!-- Heroicon name: view-grid -->*/}
+              <MenuImg src="/icons/view-grid.svg" alt="click" />
+            </MenuImageWrapper>
+            <Title>Product Page 4</Title>
+          </Item>
+
         </Link>
       </Nav>
     </div>
     <ButtonWrapper1>
       <ButtonWrapper2>
         <Link href="/auth/login">
-          <a>
-            <Button>Sign up</Button>
-          </a>
+
+          <Button>Sign up</Button>
+
         </Link>
       </ButtonWrapper2>
     </ButtonWrapper1>

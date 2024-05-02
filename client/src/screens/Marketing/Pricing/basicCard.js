@@ -164,7 +164,7 @@ const BasicCard = ({ title, price, left }) => {
             <StyledListItem text="Vel ipsa esse repudiandae" />
           </ul>
           <LinkWrapper>
-            <Link href="/auth/signup" aria-describedby={id} passHref>
+            <Link href="/auth/signup" aria-describedby={id} passHref legacyBehavior>
               <StyledLink>Start your trial</StyledLink>
             </Link>
           </LinkWrapper>

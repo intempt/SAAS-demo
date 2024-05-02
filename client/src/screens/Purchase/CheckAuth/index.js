@@ -64,13 +64,13 @@ const CheckAuth = () => {
               <StyledHeader>Please Sign-in or Sign-up</StyledHeader>
               <StyledSection>
                 <div>Already Have an account? login below</div>
-                <Link href="/auth/login" passHref>
+                <Link href="/auth/login" passHref legacyBehavior>
                   <StyledLink>Login</StyledLink>
                 </Link>
               </StyledSection>
               <StyledSection>
                 <div>Need to create an account? click below</div>
-                <Link href="/auth/signup" passHref>
+                <Link href="/auth/signup" passHref legacyBehavior>
                   <StyledLink>Signup</StyledLink>
                 </Link>
               </StyledSection>
@@ -84,7 +84,7 @@ const CheckAuth = () => {
               </StyledHeader>
               <StyledSection>
                 <div>Please Select an organization from user dashboard</div>
-                <Link href="/user/dashboard" passHref>
+                <Link href="/user/dashboard" passHref legacyBehavior>
                   <StyledLink>Go to Dashboard</StyledLink>
                 </Link>
               </StyledSection>

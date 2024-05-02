@@ -199,7 +199,7 @@ const ConfirmedEmail = () => {
                 <CardText>Click below to navigate to the app your were invited to</CardText>
                 <TextWrapper>
                   <Link href={`/app/${org_id}/dashboard`}>
-                    <a>Go to App</a>
+                    Go to App
                   </Link>
                 </TextWrapper>
               </div>

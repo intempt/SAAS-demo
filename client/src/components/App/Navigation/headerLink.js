@@ -24,7 +24,7 @@ const HeaderLink = ({ path, text }) => {
   const location = useRouter();
   const isActive = location.asPath === path;
   return (
-    <Link href={path} passHref>
+    <Link href={path} passHref legacyBehavior>
       <StyledLink isActive={isActive}>{text}</StyledLink>
     </Link>
   );

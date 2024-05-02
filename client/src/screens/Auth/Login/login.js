@@ -152,7 +152,7 @@ const Login = () => {
             </RememberMeWrapper>
 
             <ForgotPassword>
-              <Link href="/auth/passwordreset" passHref>
+              <Link href="/auth/passwordreset" passHref legacyBehavior>
                 <StyledLink>Forgot your password?</StyledLink>
               </Link>
             </ForgotPassword>

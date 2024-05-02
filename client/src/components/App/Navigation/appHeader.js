@@ -257,12 +257,12 @@ const AppHeader = ({
               </Menu.Item>
               <Menu.Item icon={<UserOutlined />} key="user">
                 <Link href="/user/dashboard">
-                  <a>User Dashboard</a>
+                  User Dashboard
                 </Link>
               </Menu.Item>
               <Menu.Item icon={<SettingOutlined />} key="settings">
                 <Link href="/user/settings/account">
-                  <a>Settings</a>
+                  Settings
                 </Link>
               </Menu.Item>
               <Menu.Item icon={<LogoutOutlined />} onClick={logout} key="SignOut">

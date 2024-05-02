@@ -28,7 +28,7 @@ const NavLink = ({ text, link }) => {
   const location = useRouter();
   const isActive = location.asPath === link;
   return (
-    <Link href={link} passHref>
+    <Link href={link} passHref legacyBehavior>
       <StyledLink isActive={isActive}>{text}</StyledLink>
     </Link>
   );
