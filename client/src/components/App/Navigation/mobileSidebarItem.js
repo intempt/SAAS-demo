@@ -35,14 +35,14 @@ const TitleWrapper = styled.span`
 `;
 
 const MobileSidebarItem = ({ link, toggleMenu, svg, title, theme }) => (
-  <Link href={link}>
-    <a>
-      <Wrapper onClick={toggleMenu} theme={theme}>
-        <SvgWrapper>{svg}</SvgWrapper>
-        <TitleWrapper>{title}</TitleWrapper>
-      </Wrapper>
-    </a>
-  </Link>
+  (<Link href={link}>
+
+    <Wrapper onClick={toggleMenu} theme={theme}>
+      <SvgWrapper>{svg}</SvgWrapper>
+      <TitleWrapper>{title}</TitleWrapper>
+    </Wrapper>
+
+  </Link>)
 );
 
 export default MobileSidebarItem;

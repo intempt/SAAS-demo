@@ -29,14 +29,14 @@ const SvgWrapper = styled.div`
 `;
 
 const MobileSidebarItem = ({ link, toggleMenu, svg, title }) => (
-  <Link href={link}>
-    <a>
-      <Wrapper onClick={toggleMenu}>
-        <SvgWrapper>{svg}</SvgWrapper>
-        {title}
-      </Wrapper>
-    </a>
-  </Link>
+  (<Link href={link}>
+
+    <Wrapper onClick={toggleMenu}>
+      <SvgWrapper>{svg}</SvgWrapper>
+      {title}
+    </Wrapper>
+
+  </Link>)
 );
 
 export default MobileSidebarItem;

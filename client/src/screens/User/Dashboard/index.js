@@ -152,15 +152,15 @@ const Dashboard = () => {
             <AppsWrapper>
               {!!orgs.length ? (
                 orgs.map((org) => (
-                  <Link key={org.id} href={`/app/${org.id}/dashboard`} state={{ org }}>
-                    <a>
-                      <StyledCard key={org.id}>
-                        <StyledLink>{org.org_name}</StyledLink>
+                  (<Link key={org.id} href={`/app/${org.id}/dashboard`} state={{ org }}>
 
-                        <RoleText>Role: admin</RoleText>
-                      </StyledCard>
-                    </a>
-                  </Link>
+                    <StyledCard key={org.id}>
+                      <StyledLink>{org.org_name}</StyledLink>
+
+                      <RoleText>Role: admin</RoleText>
+                    </StyledCard>
+
+                  </Link>)
                 ))
               ) : (
                 <Empty />

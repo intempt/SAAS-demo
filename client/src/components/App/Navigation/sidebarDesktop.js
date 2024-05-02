@@ -129,7 +129,7 @@ const SidebarDesktop = ({ theme, toggleTheme, org_id, location, collapsed }) => 
           <Menu mode="inline" theme={theme} selectedKeys={[selectedKey && selectedKey.id]}>
             {menus.map(({ id, route, icon, name }) => (
               <Menu.Item key={id} title={name}>
-                <Link href={route || '#'} passHref>
+                <Link href={route || '#'} passHref legacyBehavior>
                   <StyledLink>
                     <StyledIcon>{icon}</StyledIcon>
                     {!collapsed && <ItemWrapper>{name}</ItemWrapper>}

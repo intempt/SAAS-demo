@@ -102,9 +102,9 @@ const HeroSection = () => (
         Elit sunt amet fugiat veniam occaecat fugiat aliqua.
       </Paragraph>
       <Link href="/auth/login">
-        <a>
-          <StyledButton type="primary">Get started &#8594;</StyledButton>
-        </a>
+
+        <StyledButton type="primary">Get started &#8594;</StyledButton>
+
       </Link>
     </HeroTextContainer>
 

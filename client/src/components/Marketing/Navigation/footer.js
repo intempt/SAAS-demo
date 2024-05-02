@@ -67,37 +67,37 @@ const Footer = () => {
         <Column>
           <FooterColHeader>Header 1</FooterColHeader>
           <Link href="/">
-            <a>
-              <FooterLink>Link1</FooterLink>
-            </a>
+
+            <FooterLink>Link1</FooterLink>
+
           </Link>
           <Link href="/">
-            <a>
-              <FooterLink>Link2</FooterLink>
-            </a>
+
+            <FooterLink>Link2</FooterLink>
+
           </Link>
           <Link href="/">
-            <a>
-              <FooterLink>Link3</FooterLink>
-            </a>
+
+            <FooterLink>Link3</FooterLink>
+
           </Link>
         </Column>
         <Column>
           <FooterColHeader>Header 2</FooterColHeader>
           <Link href="/">
-            <a>
-              <FooterLink>Link1</FooterLink>
-            </a>
+
+            <FooterLink>Link1</FooterLink>
+
           </Link>
           <Link href="/">
-            <a>
-              <FooterLink>Link2</FooterLink>
-            </a>
+
+            <FooterLink>Link2</FooterLink>
+
           </Link>
           <Link href="/">
-            <a>
-              <FooterLink>Link3</FooterLink>
-            </a>
+
+            <FooterLink>Link3</FooterLink>
+
           </Link>
         </Column>
       </Container>

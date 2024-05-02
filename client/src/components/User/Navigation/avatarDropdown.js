@@ -56,9 +56,9 @@ const AvatarDropDown = ({ avatarMenuHandler }) => {
     <Wrapper role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
       <ItemWrapper>
         <Link href="/user/settings/account">
-          <a>
-            <DropdownItem onClick={avatarMenuHandler} title="Account Settings" />
-          </a>
+
+          <DropdownItem onClick={avatarMenuHandler} title="Account Settings" />
+
         </Link>
       </ItemWrapper>
       <Border />

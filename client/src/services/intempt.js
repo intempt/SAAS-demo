@@ -74,8 +74,6 @@ export const IntemptScriptsLoader = () => {
 
   const src = `https://cdn.intempt.com/v1/intempt.min.js?organization=${organization}&project=${project}&source=${source}&key=${apiKey}`;
 
-
-
   return (
       <script async src={src}></script>
   );

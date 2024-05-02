@@ -77,14 +77,14 @@ const TeamApps = () => {
           <h1>Team Apps:</h1>
           {teamApps &&
             teamApps.map((org) => (
-              <Link key={org.id} href={`/app/${org.id}/dashboard`}>
-                <a>
-                  <StyledCard>
-                    <StyledLink>{org.org_name}</StyledLink>
-                    <RoleText>Role: user</RoleText>
-                  </StyledCard>
-                </a>
-              </Link>
+              (<Link key={org.id} href={`/app/${org.id}/dashboard`}>
+
+                <StyledCard>
+                  <StyledLink>{org.org_name}</StyledLink>
+                  <RoleText>Role: user</RoleText>
+                </StyledCard>
+
+              </Link>)
             ))}
         </div>
       </div>

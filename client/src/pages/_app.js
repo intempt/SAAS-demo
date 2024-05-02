@@ -49,6 +49,8 @@ function MyApp(props) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
+      const popStateEvent = new PopStateEvent('popstate', { state: url });
+      window.dispatchEvent(popStateEvent);
       pageView(url);
     };
 

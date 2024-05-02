@@ -66,7 +66,7 @@ const ContentButton = ({variant = BUTTON_VARIANTS.PRIMARY, url, action, text}) =
     <div>
       {url
         ?  (
-              <Link href={url} passHref>
+              <Link href={url} passHref legacyBehavior>
                 <ButtonLinkWrapper>{drawButton()}</ButtonLinkWrapper>
               </Link>
           )

@@ -127,9 +127,9 @@ const SidebarMobile = ({ toggleMobileMenu }) => {
         <Sidebar>
           <LogoWrapper>
             <Link href="/user/dashboard">
-              <a>
-                <LargeLogo textColor={colors.white} />
-              </a>
+
+              <LargeLogo textColor={colors.white} />
+
             </Link>
           </LogoWrapper>
           <Nav>
