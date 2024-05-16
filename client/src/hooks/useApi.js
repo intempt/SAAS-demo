@@ -6,7 +6,6 @@ const useApi = async (url, method, data, params) => {
   const { fetchInit, fetchSuccess, fetchFailure } = useContext(ApiContext);
   const [response, setResponse] = useState(null);
   const [errorState, setError] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,8 +16,6 @@ const useApi = async (url, method, data, params) => {
           data,
           params
         });
-
-        console.log(result);
         fetchSuccess();
         setResponse(result.data);
       } catch (error) {
