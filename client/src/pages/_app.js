@@ -102,18 +102,19 @@ function MyApp(props) {
     dispatchModal(Remove_Modal);
   };
 
+
+
   return (
       <>
         <Head>
-            <IntemptScriptsLoader />
+          <IntemptScriptsLoader/>
         </Head>
-
-        <AuthContext.Provider value={{ authState, LogIn, LogOut, firebase }}>
-          <ApiContext.Provider value={{ apiState, fetchFailure, fetchInit, fetchSuccess }}>
+        <AuthContext.Provider value={{authState, LogIn, LogOut, firebase}}>
+          <ApiContext.Provider value={{apiState, fetchFailure, fetchInit, fetchSuccess}}>
             <OrgContext.Provider value={{SetOrg, orgState}}>
               <ModalContext.Provider value={{SetModal, modalState, RemoveModal}}>
                 <CaslContext.Provider value={ability}>
-                  <ModalComponent />
+                  <ModalComponent/>
                   <ThemeProvider theme={theme}>
                     <Layout>
                       <Component {...pageProps} />

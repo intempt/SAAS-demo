@@ -18,6 +18,8 @@ const configSkeleton = {
 };
 
 const useIntemptOptimization = () => {
+
+
   const router = useRouter();
   const orgId = getOrgId();
   const { authState } = useContext(AuthContext);

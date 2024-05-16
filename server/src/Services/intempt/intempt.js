@@ -60,6 +60,7 @@ class IntemptService {
             response = {
                 rows: rows
             }
+
         } catch (error) {
             response = {
                 experience: null
